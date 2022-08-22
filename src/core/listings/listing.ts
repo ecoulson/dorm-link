@@ -1,4 +1,4 @@
-import { ContactInfo } from '../contact-information/contact-info';
+import { ContactInfo } from './contact-information/contact-info';
 
 export class Listing {
     constructor(

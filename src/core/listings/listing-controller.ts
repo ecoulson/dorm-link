@@ -1,23 +1,21 @@
-import { randomUUID } from 'crypto';
-import { ContactInfo } from '../contact-information/contact-info';
 import { Listing } from './listing';
-import { ListingFormData } from './listing-form-data';
+import { CreateListingRequest } from './create-listing-request';
 import { ListingService } from './listing-service';
+import { SearchListingsRequest } from './search-listings-request';
+import { GetListingRequest } from './get-listing-request';
 
 export class ListingController {
     constructor(private readonly service: ListingService) {}
 
-    async createFromListingForm(
-        contactInfo: ContactInfo,
-        listingData: ListingFormData
-    ): Promise<Listing> {
-        const listing = new Listing(
-            randomUUID(),
-            contactInfo,
-            listingData.city,
-            listingData.images,
-            listingData.price
-        );
-        return this.service.create(listing);
+    async create(request: CreateListingRequest): Promise<Listing> {
+        return this.service.create(request.contactInfo, request.listing);
+    }
+
+    async getById(request: GetListingRequest): Promise<Listing> {
+        return this.service.getById(request.id);
+    }
+
+    async search(request: SearchListingsRequest): Promise<Listing[]> {
+        return this.service.search(request.city);
     }
 }
