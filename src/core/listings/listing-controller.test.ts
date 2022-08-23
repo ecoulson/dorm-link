@@ -8,7 +8,7 @@ import {
     verify,
     when,
 } from 'ts-mockito';
-import { ContactInfo } from './contact-information/contact-info';
+import { ContactInformation } from './contact-information/contact-information';
 import { Listing } from './listing';
 import { ListingController } from './listing-controller';
 import { ListingService } from './listing-service';
@@ -24,7 +24,7 @@ describe('Listing Controller Test Suite', () => {
     test('Should create a listing', async () => {
         const expectedListing = new Listing(
             randomUUID(),
-            new ContactInfo(
+            new ContactInformation(
                 randomUUID(),
                 'Evan Coulson',
                 'Harvey Mudd College',
@@ -59,7 +59,7 @@ describe('Listing Controller Test Suite', () => {
         const id = randomUUID();
         const expectedListing = new Listing(
             id,
-            new ContactInfo(
+            new ContactInformation(
                 randomUUID(),
                 'Evan Coulson',
                 'Harvey Mudd College',
@@ -84,7 +84,7 @@ describe('Listing Controller Test Suite', () => {
         const expectedListings = [
             new Listing(
                 id,
-                new ContactInfo(
+                new ContactInformation(
                     randomUUID(),
                     'Evan Coulson',
                     'Harvey Mudd College',

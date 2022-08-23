@@ -1,6 +1,6 @@
 import { ContactMethod } from './contact-method';
 
-export class ContactInfo {
+export class ContactInformation {
     constructor(
         public readonly id: string,
         public readonly name: string,

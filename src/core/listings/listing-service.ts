@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { ContactInfo } from './contact-information/contact-info';
+import { ContactInformation } from './contact-information/contact-information';
 import { ContactMethodType } from './contact-information/contact-method-type';
 import { CreateContactInfoParameters } from './contact-information/create-contact-info-parameters';
 import { CreateContactMethodParameters } from './contact-information/create-contact-method-parameters';
@@ -16,7 +16,7 @@ export class ListingService {
         contactInfoParameters: CreateContactInfoParameters,
         listing: CreateListingParameters
     ): Promise<Listing> {
-        const status = await this.listingBroker.create(
+        const status = await this.listingBroker.insert(
             new Listing(
                 randomUUID(),
                 this.createContactInfo(contactInfoParameters),
@@ -31,7 +31,7 @@ export class ListingService {
     private createContactInfo(
         contactInfoParameters: CreateContactInfoParameters
     ) {
-        return new ContactInfo(
+        return new ContactInformation(
             randomUUID(),
             contactInfoParameters.name,
             contactInfoParameters.school,

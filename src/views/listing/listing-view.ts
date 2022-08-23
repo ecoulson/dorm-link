@@ -13,9 +13,9 @@ export class ListingView {
                 images: listing.images,
             },
             contactInfo: {
-                name: listing.contactInfo.name,
-                school: listing.contactInfo.school,
-                contactMethods: listing.contactInfo.contactMethods.map(
+                name: listing.contactInformation.name,
+                school: listing.contactInformation.school,
+                contactMethods: listing.contactInformation.contactMethods.map(
                     (method) => {
                         return {
                             type: method.type,

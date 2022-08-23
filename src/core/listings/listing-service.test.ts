@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { anyOfClass, instance, mock, reset, verify, when } from 'ts-mockito';
 import { Status } from '../../common/status';
-import { ContactInfo } from './contact-information/contact-info';
+import { ContactInformation } from './contact-information/contact-information';
 import { ContactMethodType } from './contact-information/contact-method-type';
 import { EmailContactMethod } from './contact-information/email-contact-method';
 import { Listing } from './listing';
@@ -19,7 +19,7 @@ describe('Listing Service Test Suite', () => {
     test('Should create a listing', async () => {
         const expectedListing = new Listing(
             randomUUID(),
-            new ContactInfo(
+            new ContactInformation(
                 randomUUID(),
                 'Evan Coulson',
                 'Harvey Mudd College',
@@ -29,7 +29,7 @@ describe('Listing Service Test Suite', () => {
             [],
             10000
         );
-        when(mockedBroker.create(anyOfClass(Listing))).thenResolve(
+        when(mockedBroker.insert(anyOfClass(Listing))).thenResolve(
             Status.ok(expectedListing)
         );
 
@@ -52,14 +52,14 @@ describe('Listing Service Test Suite', () => {
         );
 
         expect(listing).toEqual(expectedListing);
-        verify(mockedBroker.create(anyOfClass(Listing))).once();
+        verify(mockedBroker.insert(anyOfClass(Listing))).once();
     });
 
     test('Should get a listing by id', async () => {
         const id = randomUUID();
         const expectedListing = new Listing(
             id,
-            new ContactInfo(
+            new ContactInformation(
                 randomUUID(),
                 'Evan Coulson',
                 'Harvey Mudd College',
@@ -84,7 +84,7 @@ describe('Listing Service Test Suite', () => {
         const expectedListings = [
             new Listing(
                 id,
-                new ContactInfo(
+                new ContactInformation(
                     randomUUID(),
                     'Evan Coulson',
                     'Harvey Mudd College',
