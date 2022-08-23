@@ -1,4 +1,5 @@
 import { randomUUID } from 'crypto';
+import { Injectable } from 'noose-injection';
 import { ContactInformation } from './contact-information/contact-information';
 import { ContactMethodType } from './contact-information/contact-method-type';
 import { CreateContactInfoParameters } from './contact-information/create-contact-info-parameters';
@@ -7,10 +8,15 @@ import { EmailContactMethod } from './contact-information/email-contact-method';
 import { PhoneContactMethod } from './contact-information/phone-contact-method';
 import { CreateListingParameters } from './create-listing-parameters';
 import { Listing } from './listing';
+import { ListingBrokerAnnotation } from './listing-annotations';
 import { ListingBroker } from './listing-broker';
 
+@Injectable()
 export class ListingService {
-    constructor(private readonly listingBroker: ListingBroker) {}
+    constructor(
+        @ListingBrokerAnnotation.inject()
+        private readonly listingBroker: ListingBroker
+    ) {}
 
     async create(
         contactInfoParameters: CreateContactInfoParameters,

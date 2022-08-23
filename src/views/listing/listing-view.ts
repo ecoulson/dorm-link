@@ -5,11 +5,11 @@ export class ListingView {
     constructor(private readonly listingController: ListingController) {}
 
     async displayListing(id: string): Promise<DisplayListingViewModel> {
-        const listing = await this.listingController.getById(id);
+        const listing = await this.listingController.getById({ id });
         return {
             listing: {
                 city: listing.city,
-                price: `$${(listing.price / 100).toPrecision(2)}`,
+                price: `$${(listing.price / 100).toFixed(2)} / night`,
                 images: listing.images,
             },
             contactInfo: {
@@ -18,7 +18,7 @@ export class ListingView {
                 contactMethods: listing.contactInformation.contactMethods.map(
                     (method) => {
                         return {
-                            type: method.type,
+                            label: method.type,
                             value: method.value,
                         };
                     }

@@ -8,7 +8,7 @@ export interface DisplayListingViewModel {
         name: string;
         school: string;
         contactMethods: {
-            type: string;
+            label: string;
             value: string;
         }[];
     };

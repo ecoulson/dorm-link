@@ -10,9 +10,15 @@ import {
 import { ContactInformation } from './contact-information/contact-information';
 import { EmailContactMethod } from './contact-information/email-contact-method';
 import { PhoneContactMethod } from './contact-information/phone-contact-method';
+import { Injectable } from 'noose-injection';
+import { ListingClientAnnotation } from '../core-annotations';
 
+@Injectable()
 export class ListingBroker {
-    constructor(private readonly client: Prisma.ListingDelegate<unknown>) {}
+    constructor(
+        @ListingClientAnnotation.inject()
+        private readonly client: Prisma.ListingDelegate<unknown>
+    ) {}
 
     async insert(listing: Listing): Promise<Status<Listing>> {
         const result = await this.client.create({
