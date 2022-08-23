@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { CoreModule } from './core-module';
 import { ListingControllerAnnotation } from './listings/listing-annotations';
 import { ListingController } from './listings/listing-controller';

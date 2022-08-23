@@ -1,10 +1,16 @@
+import { Injectable } from 'noose-injection';
 import { ListingController } from '../../core/listings/listing-controller';
-import { DisplayListingViewModel } from './display-listing-view-model';
+import { ListingLibraryAnnotation } from '../core-library-annotation';
+import { ListingViewModel } from './display-listing-view-model';
 
+@Injectable()
 export class ListingView {
-    constructor(private readonly listingController: ListingController) {}
+    constructor(
+        @ListingLibraryAnnotation.inject()
+        private readonly listingController: ListingController
+    ) {}
 
-    async displayListing(id: string): Promise<DisplayListingViewModel> {
+    async displayListing(id: string): Promise<ListingViewModel> {
         const listing = await this.listingController.getById({ id });
         return {
             listing: {

@@ -1,4 +1,4 @@
-export interface DisplayListingViewModel {
+export interface ListingViewModel {
     listing: {
         city: string;
         price: string;
