@@ -1,6 +1,6 @@
 enum ContactMethodType {
-    Phone = 'Phone',
-    Email = 'Email',
+    Phone = 'PHONE',
+    Email = 'EMAIL',
 }
 
 export { ContactMethodType };

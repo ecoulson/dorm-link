@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { CoreLibrary } from '../../../core';
+import { CoreLibrary } from '../../core';
 
-export default async function handle(
+export default async function listingHandler(
     request: NextApiRequest,
     response: NextApiResponse
 ) {
