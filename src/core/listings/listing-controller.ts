@@ -14,7 +14,7 @@ export class ListingController {
     ) {}
 
     async create(request: CreateListingRequest): Promise<Listing> {
-        return this.service.create(request.contactInfo, request.listing);
+        return this.service.create(request.contactInformation, request.listing);
     }
 
     async getById(request: GetListingRequest): Promise<Listing> {

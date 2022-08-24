@@ -37,7 +37,7 @@ describe('Listing Service Test Suite', () => {
             {
                 name: 'Evan Coulson',
                 school: 'Harvey Mudd College',
-                methods: [
+                contactMethods: [
                     {
                         type: ContactMethodType.Email,
                         value: 'ecoulson@g.hmc.edu',

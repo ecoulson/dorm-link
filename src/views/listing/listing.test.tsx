@@ -5,13 +5,13 @@ import { ListingViewModel } from './listing-view-model';
 
 describe('Listing Component Test Suite', () => {
     test('Should render a listing component', async () => {
-        const model: ListingViewModel = {
+        const model = new ListingViewModel({
             listing: {
                 city: 'Los Angeles',
                 price: '$100 / night',
                 images: ['https://fake-domain.com/image.jpg'],
             },
-            contactInfo: {
+            contactInformation: {
                 name: 'Evan Coulson',
                 school: 'Harvey Mudd College',
                 contactMethods: [
@@ -21,9 +21,9 @@ describe('Listing Component Test Suite', () => {
                     },
                 ],
             },
-        };
+        });
 
-        render(<Listing model={model} />);
+        render(<Listing renderer={model.render()} />);
 
         const image = (await screen.findByRole('img')) as HTMLImageElement;
         expect(screen.queryByText('Los Angeles')).toBeTruthy();

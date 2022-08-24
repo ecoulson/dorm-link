@@ -33,13 +33,13 @@ describe('Listing View Test Suite', () => {
 
         const viewModel = await view.displayListing(id);
 
-        expect(viewModel).toEqual({
+        expect(viewModel.render()).toEqual({
             listing: {
                 city: 'Los Angeles',
                 price: '$100.00 / night',
                 images: ['http://fake-domain.com/image.jpg'],
             },
-            contactInfo: {
+            contactInformation: {
                 name: 'Evan Coulson',
                 school: 'Harvey Mudd College',
                 contactMethods: [

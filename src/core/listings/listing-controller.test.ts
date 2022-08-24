@@ -44,10 +44,10 @@ describe('Listing Controller Test Suite', () => {
                 images: [],
                 price: 1000,
             },
-            contactInfo: {
+            contactInformation: {
                 name: 'Evan Coulson',
                 school: 'Harvey Mudd College',
-                methods: [],
+                contactMethods: [],
             },
         });
 

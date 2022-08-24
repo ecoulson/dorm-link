@@ -1,6 +1,8 @@
 import { instance, mock, reset, verify, when } from 'ts-mockito';
+import { DisplayListingRender } from './display-listing-renderer';
 import { ListingPropsRetriever } from './listing-props-retriever';
 import { ListingView } from './listing-view';
+import { ListingViewModel } from './listing-view-model';
 
 describe('Listing Props Retriever Test Suite', () => {
     const mockedListingView = mock(ListingView);
@@ -11,7 +13,9 @@ describe('Listing Props Retriever Test Suite', () => {
     });
 
     test('Should get props for the listing', async () => {
-        when(mockedListingView.displayListing('id')).thenResolve({} as any);
+        when(mockedListingView.displayListing('id')).thenResolve(
+            new ListingViewModel({} as DisplayListingRender)
+        );
         const props = await retriever.retrieve({
             pathname: '',
             query: {
@@ -21,7 +25,7 @@ describe('Listing Props Retriever Test Suite', () => {
 
         expect(props).toMatchObject({
             props: {
-                model: {},
+                renderer: {},
             },
         });
         verify(mockedListingView.displayListing('id')).once();

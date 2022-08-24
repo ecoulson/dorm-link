@@ -11,7 +11,7 @@ export async function getServerSideProps(context: NextPageContext) {
     return new ListingPropsRetriever(Views.listing).retrieve(context);
 }
 
-export const ListingPage = ({ model }: ListingProps) => {
+export const ListingPage = ({ renderer: model }: ListingProps) => {
     return (
         <>
             <Head>
@@ -22,7 +22,7 @@ export const ListingPage = ({ model }: ListingProps) => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Listing model={model} />
+            <Listing renderer={model} />
         </>
     );
 };

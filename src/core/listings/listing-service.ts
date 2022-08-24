@@ -41,7 +41,7 @@ export class ListingService {
             randomUUID(),
             contactInfoParameters.name,
             contactInfoParameters.school,
-            contactInfoParameters.methods.map((method) =>
+            contactInfoParameters.contactMethods.map((method) =>
                 this.createMethod(method)
             )
         );

@@ -12,24 +12,26 @@ export class ListingView {
 
     async displayListing(id: string): Promise<ListingViewModel> {
         const listing = await this.listingController.getById({ id });
-        return {
+        return new ListingViewModel({
             listing: {
                 city: listing.city,
                 price: `$${(listing.price / 100).toFixed(2)} / night`,
                 images: listing.images,
             },
-            contactInfo: {
+            contactInformation: {
                 name: listing.contactInformation.name,
                 school: listing.contactInformation.school,
                 contactMethods: listing.contactInformation.contactMethods.map(
                     (method) => {
                         return {
-                            label: method.type,
+                            label:
+                                method.type.substring(0, 1) +
+                                method.type.substring(1).toLowerCase(),
                             value: method.value,
                         };
                     }
                 ),
             },
-        };
+        });
     }
 }

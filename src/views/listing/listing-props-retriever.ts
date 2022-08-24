@@ -1,11 +1,11 @@
 import { GetServerSidePropsResult } from 'next';
 import { PageContext } from '../page-context';
 import { PropsRetriever } from '../props-retriever';
+import { DisplayListingRender } from './display-listing-renderer';
 import { ListingView } from './listing-view';
-import { ListingViewModel } from './listing-view-model';
 
 export interface ListingProps {
-    model: ListingViewModel;
+    renderer: DisplayListingRender;
 }
 
 export class ListingPropsRetriever implements PropsRetriever<ListingProps> {
@@ -19,11 +19,12 @@ export class ListingPropsRetriever implements PropsRetriever<ListingProps> {
                 notFound: true,
             };
         }
+        const model = await this.view.displayListing(
+            context.query['id'] as string
+        );
         return {
             props: {
-                model: await this.view.displayListing(
-                    context.query['id'] as string
-                ),
+                renderer: model.render(),
             },
         };
     }

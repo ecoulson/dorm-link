@@ -3,5 +3,5 @@ import { CreateContactMethodParameters } from './create-contact-method-parameter
 export interface CreateContactInfoParameters {
     name: string;
     school: string;
-    methods: CreateContactMethodParameters[];
+    contactMethods: CreateContactMethodParameters[];
 }
