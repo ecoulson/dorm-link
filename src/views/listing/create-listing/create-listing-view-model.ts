@@ -7,8 +7,4 @@ export class CreateListingViewModel implements ViewModel {
     render(): CreateListingFormRenderer {
         return this.renderer;
     }
-
-    createListing() {
-
-    }
 }

@@ -1,7 +1,7 @@
 import { Injectable } from 'noose-injection';
 import { ListingController } from '../../core/listings/listing-controller';
 import { ListingLibraryAnnotation } from '../core-library-annotation';
-import { ListingViewModel } from './listing-view-model';
+import { DisplayListingRender } from './display-listing-renderer';
 
 @Injectable()
 export class ListingView {
@@ -10,9 +10,9 @@ export class ListingView {
         private readonly listingController: ListingController
     ) {}
 
-    async displayListing(id: string): Promise<ListingViewModel> {
+    async displayListing(id: string): Promise<DisplayListingRender> {
         const listing = await this.listingController.getById({ id });
-        return new ListingViewModel({
+        return {
             listing: {
                 city: listing.city,
                 price: `$${(listing.price / 100).toFixed(2)} / night`,
@@ -32,6 +32,6 @@ export class ListingView {
                     }
                 ),
             },
-        });
+        };
     }
 }

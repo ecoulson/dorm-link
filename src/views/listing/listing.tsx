@@ -1,7 +1,12 @@
 import React from 'react';
-import { ListingProps } from './listing-props-retriever';
+import { ListingViewModel } from './listing-view-model';
 
-export function Listing({ renderer }: ListingProps) {
+interface ListingProps {
+    model: ListingViewModel;
+}
+
+export function Listing({ model }: ListingProps) {
+    const renderer = model.render();
     return (
         <div>
             <h1>{renderer.listing.city}</h1>

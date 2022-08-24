@@ -5,7 +5,7 @@ import { ListingViewModel } from './listing-view-model';
 
 describe('Listing Component Test Suite', () => {
     test('Should render a listing component', async () => {
-        const model = new ListingViewModel({
+        const renderer = {
             listing: {
                 city: 'Los Angeles',
                 price: '$100 / night',
@@ -21,9 +21,9 @@ describe('Listing Component Test Suite', () => {
                     },
                 ],
             },
-        });
+        };
 
-        render(<Listing renderer={model.render()} />);
+        render(<Listing model={new ListingViewModel(renderer)} />);
 
         const image = (await screen.findByRole('img')) as HTMLImageElement;
         expect(screen.queryByText('Los Angeles')).toBeTruthy();

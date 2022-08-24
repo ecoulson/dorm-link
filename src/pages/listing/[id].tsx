@@ -3,15 +3,16 @@ import Head from 'next/head';
 import { Views } from '../../views';
 import { Listing } from '../../views/listing/listing';
 import {
-    ListingProps,
+    DisplayListingPageProps,
     ListingPropsRetriever,
 } from '../../views/listing/listing-props-retriever';
+import { ListingViewModel } from '../../views/listing/listing-view-model';
 
 export async function getServerSideProps(context: NextPageContext) {
     return new ListingPropsRetriever(Views.listing).retrieve(context);
 }
 
-export const ListingPage = ({ renderer: model }: ListingProps) => {
+export const ListingPage = ({ renderer }: DisplayListingPageProps) => {
     return (
         <>
             <Head>
@@ -22,7 +23,7 @@ export const ListingPage = ({ renderer: model }: ListingProps) => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Listing renderer={model} />
+            <Listing model={new ListingViewModel(renderer)} />
         </>
     );
 };

@@ -4,27 +4,28 @@ import { PropsRetriever } from '../props-retriever';
 import { DisplayListingRender } from './display-listing-renderer';
 import { ListingView } from './listing-view';
 
-export interface ListingProps {
+export interface DisplayListingPageProps {
     renderer: DisplayListingRender;
 }
 
-export class ListingPropsRetriever implements PropsRetriever<ListingProps> {
+export class ListingPropsRetriever
+    implements PropsRetriever<DisplayListingPageProps>
+{
     constructor(private readonly view: ListingView) {}
 
     async retrieve(
         context: PageContext
-    ): Promise<GetServerSidePropsResult<ListingProps>> {
+    ): Promise<GetServerSidePropsResult<DisplayListingPageProps>> {
         if (!context.query['id']) {
             return {
                 notFound: true,
             };
         }
-        const model = await this.view.displayListing(
-            context.query['id'] as string
-        );
         return {
             props: {
-                renderer: model.render(),
+                renderer: await this.view.displayListing(
+                    context.query['id'] as string
+                ),
             },
         };
     }

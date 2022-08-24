@@ -31,9 +31,9 @@ describe('Listing View Test Suite', () => {
             )
         );
 
-        const viewModel = await view.displayListing(id);
+        const renderer = await view.displayListing(id);
 
-        expect(viewModel.render()).toEqual({
+        expect(renderer).toEqual({
             listing: {
                 city: 'Los Angeles',
                 price: '$100.00 / night',

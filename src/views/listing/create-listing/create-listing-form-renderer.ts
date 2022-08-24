@@ -1,6 +1,7 @@
 import { ContactMethodInputRender } from '../contact-information/contact-method-input-renderer';
 import { InputRenderer } from '../../base/input-renderer';
 import { ImageInputRenderer } from './image-input-renderer';
+import { ButtonRenderer } from '../../base/button-renderer';
 
 export interface CreateListingFormRenderer {
     form: {
@@ -16,5 +17,6 @@ export interface CreateListingFormRenderer {
                 contactMethods: ContactMethodInputRender[];
             };
         };
+        submit: ButtonRenderer;
     };
 }
