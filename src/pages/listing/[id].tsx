@@ -1,24 +1,17 @@
-import type { NextPage, NextPageContext } from 'next';
+import type { NextPageContext } from 'next';
 import Head from 'next/head';
 import { Views } from '../../views';
-import { ListingViewModel } from '../../views/listing/display-listing-view-model';
 import { Listing } from '../../views/listing/listing';
-
-interface ListingPageProps {
-    model: ListingViewModel;
-}
+import {
+    ListingProps,
+    ListingPropsRetriever,
+} from '../../views/listing/listing-props-retriever';
 
 export async function getServerSideProps(context: NextPageContext) {
-    return {
-        props: {
-            model: await Views.listing.displayListing(
-                context.query['id'] as string
-            ),
-        },
-    };
+    return new ListingPropsRetriever(Views.listing).retrieve(context);
 }
 
-const ListingPage: NextPage<ListingPageProps> = ({ model }) => {
+export const ListingPage = ({ model }: ListingProps) => {
     return (
         <>
             <Head>

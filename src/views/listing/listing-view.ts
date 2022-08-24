@@ -1,7 +1,7 @@
 import { Injectable } from 'noose-injection';
 import { ListingController } from '../../core/listings/listing-controller';
 import { ListingLibraryAnnotation } from '../core-library-annotation';
-import { ListingViewModel } from './display-listing-view-model';
+import { ListingViewModel } from './listing-view-model';
 
 @Injectable()
 export class ListingView {
