@@ -1,5 +1,5 @@
 import { Module } from 'noose-injection';
-import { ListingView } from './listing-view';
+import { ListingView } from './display-listing/listing-view';
 import { ListingViewAnnotation } from './listing-view-annotation';
 
 export class ListingViewModule extends Module {

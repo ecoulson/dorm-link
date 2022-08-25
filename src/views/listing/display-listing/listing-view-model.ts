@@ -1,4 +1,4 @@
-import { ViewModel } from '../view-model';
+import { ViewModel } from '../../view-model';
 import { DisplayListingRender } from './display-listing-renderer';
 
 export class ListingViewModel implements ViewModel {

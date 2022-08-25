@@ -1,9 +1,9 @@
 import { randomUUID } from 'crypto';
 import { anything, instance, mock, reset, when } from 'ts-mockito';
-import { ContactInformation } from '../../core/listings/contact-information/contact-information';
-import { EmailContactMethod } from '../../core/listings/contact-information/email-contact-method';
-import { Listing } from '../../core/listings/listing';
-import { ListingController } from '../../core/listings/listing-controller';
+import { ContactInformation } from '../../../core/listings/contact-information/contact-information';
+import { EmailContactMethod } from '../../../core/listings/contact-information/email-contact-method';
+import { Listing } from '../../../core/listings/listing';
+import { ListingController } from '../../../core/listings/listing-controller';
 import { ListingView } from './listing-view';
 
 describe('Listing View Test Suite', () => {

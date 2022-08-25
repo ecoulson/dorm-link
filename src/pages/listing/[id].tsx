@@ -1,12 +1,12 @@
 import type { NextPageContext } from 'next';
 import Head from 'next/head';
 import { Views } from '../../views';
-import { Listing } from '../../views/listing/listing';
+import { Listing } from '../../views/listing/display-listing/listing';
 import {
     DisplayListingPageProps,
     ListingPropsRetriever,
-} from '../../views/listing/listing-props-retriever';
-import { ListingViewModel } from '../../views/listing/listing-view-model';
+} from '../../views/listing/display-listing/listing-props-retriever';
+import { ListingViewModel } from '../../views/listing/display-listing/listing-view-model';
 
 export async function getServerSideProps(context: NextPageContext) {
     return new ListingPropsRetriever(Views.listing).retrieve(context);

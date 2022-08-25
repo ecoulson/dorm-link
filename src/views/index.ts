@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { ListingView } from './listing/listing-view';
+import { ListingView } from './listing/display-listing/listing-view';
 import { ListingViewAnnotation } from './listing/listing-view-annotation';
 import { ViewModule } from './view-module';
 

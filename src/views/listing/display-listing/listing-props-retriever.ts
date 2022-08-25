@@ -1,6 +1,6 @@
 import { GetServerSidePropsResult } from 'next';
-import { PageContext } from '../page-context';
-import { PropsRetriever } from '../props-retriever';
+import { PageContext } from '../../page-context';
+import { PropsRetriever } from '../../props-retriever';
 import { DisplayListingRender } from './display-listing-renderer';
 import { ListingView } from './listing-view';
 

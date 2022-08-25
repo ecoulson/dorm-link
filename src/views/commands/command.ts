@@ -1,3 +1,5 @@
+import { CommandType } from './command-type';
+
 export interface Command {
-    name: string;
+    type: CommandType;
 }
