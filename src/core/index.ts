@@ -1,25 +1,3 @@
-import 'reflect-metadata';
-import { CoreModule } from './core-module';
-import { ListingRouteHandler } from './listings/api/listing-route-handler';
-import {
-    ListingControllerAnnotation,
-    ListingRouteHandlerAnnotation,
-} from './listings/listing-annotations';
-import { ListingController } from './listings/listing-controller';
-
-const coreModule = new CoreModule();
-coreModule.configure();
-
-export const Controllers = {
-    listing: coreModule.resolve<ListingController>(ListingControllerAnnotation),
-};
-
-export const Routes = {
-    listing: coreModule.resolve<ListingRouteHandler>(
-        ListingRouteHandlerAnnotation
-    ),
-};
-
 export type { ListingController } from './listings/listing-controller';
 export { Listing } from './listings/listing';
 export { ContactInformation } from './listings/contact-information/contact-information';

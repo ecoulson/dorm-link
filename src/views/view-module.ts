@@ -1,5 +1,5 @@
 import { Module } from 'noose-injection';
-import { Controllers } from '../core';
+import { Controllers } from '../core/library';
 import {
     CoreLibraryAnnotaiton,
     ListingLibraryAnnotation,
