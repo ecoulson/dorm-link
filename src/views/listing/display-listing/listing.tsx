@@ -5,8 +5,8 @@ interface ListingProps {
     model: ListingViewModel;
 }
 
-export function Listing({ model }: ListingProps) {
-    const renderer = model.render();
+export function Listing(props: ListingProps) {
+    const renderer = props.model.render();
     return (
         <div>
             <h1>{renderer.listing.city}</h1>

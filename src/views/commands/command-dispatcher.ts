@@ -1,4 +1,4 @@
-import { EventEmitter } from '../event/event-emitter';
+import { EventEmitter } from '../events/event-emitter';
 import { Command } from './command';
 import { CommandEvent } from './command-event';
 

@@ -1,8 +1,6 @@
 import { anything, capture, instance, mock, reset, verify } from 'ts-mockito';
-import { EventEmitter } from '../event/event-emitter';
-import { EventType } from '../event/event-type';
+import { CommandType, EventEmitter, EventType } from '../../core';
 import { CommandDispatcher } from './command-dispatcher';
-import { CommandType } from './command-type';
 
 describe('Command Dispatcher', () => {
     const mockedEventEmitter = mock(EventEmitter);

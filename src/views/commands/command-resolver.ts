@@ -1,6 +1,4 @@
-import { EventEmitter } from '../event/event-emitter';
-import { EventType } from '../event/event-type';
-import { Command } from './command';
+import { EventEmitter, EventType } from '../../core';
 import { CommandEvent } from './command-event';
 import { CommandRegistry } from './command-registry';
 

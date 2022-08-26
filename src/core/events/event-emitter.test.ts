@@ -8,7 +8,7 @@ describe('Event Emitter Test Suite', () => {
         const handler = jest.fn();
 
         const result = eventEmitter.fire({
-            type: EventType.PostCreated,
+            type: EventType.ListingCreated,
             data: {},
         });
 
@@ -38,7 +38,7 @@ describe('Event Emitter Test Suite', () => {
     test('Should call correct handler when event is fired', () => {
         const eventEmitter = new EventEmitter();
         const handler = jest.fn();
-        eventEmitter.on(EventType.PostCreated, {
+        eventEmitter.on(EventType.ListingCreated, {
             handle: handler,
         });
         eventEmitter.on(EventType.Command, {
@@ -46,7 +46,7 @@ describe('Event Emitter Test Suite', () => {
         });
 
         const result = eventEmitter.fire({
-            type: EventType.PostCreated,
+            type: EventType.ListingCreated,
             data: {},
         });
 
@@ -59,11 +59,11 @@ describe('Event Emitter Test Suite', () => {
         const handler = {
             handle: jest.fn(),
         };
-        eventEmitter.on(EventType.PostCreated, handler);
+        eventEmitter.on(EventType.ListingCreated, handler);
 
-        const result = eventEmitter.off(EventType.PostCreated, handler);
+        const result = eventEmitter.off(EventType.ListingCreated, handler);
         eventEmitter.fire({
-            type: EventType.PostCreated,
+            type: EventType.ListingCreated,
             data: {},
         });
 
@@ -76,11 +76,11 @@ describe('Event Emitter Test Suite', () => {
         const handler = {
             handle: jest.fn(),
         };
-        eventEmitter.on(EventType.PostCreated, {
+        eventEmitter.on(EventType.ListingCreated, {
             handle: jest.fn(),
         });
 
-        const result = eventEmitter.off(EventType.PostCreated, handler);
+        const result = eventEmitter.off(EventType.ListingCreated, handler);
 
         expect(result).toBeFalsy();
     });
@@ -91,7 +91,7 @@ describe('Event Emitter Test Suite', () => {
             handle: jest.fn(),
         };
 
-        const result = eventEmitter.off(EventType.PostCreated, handler);
+        const result = eventEmitter.off(EventType.ListingCreated, handler);
 
         expect(result).toBeFalsy();
     });

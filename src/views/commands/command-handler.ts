@@ -1,5 +1,5 @@
 import { Command } from './command';
 
 export interface CommandHandler {
-    handle(command: Command): void;
+    handle(command: Command): Promise<void>;
 }

@@ -1,6 +1,5 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { Listing } from '../views/listing/display-listing/listing';
 
 const Home: NextPage = () => {
     return (

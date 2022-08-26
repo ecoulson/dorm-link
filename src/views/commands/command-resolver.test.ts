@@ -1,8 +1,6 @@
 import { anything, instance, mock, reset, verify } from 'ts-mockito';
-import { EventEmitter } from '../event/event-emitter';
-import { EventType } from '../event/event-type';
+import { EventEmitter, EventType } from '../../core';
 import { CommandResolver } from './command-resolver';
-import { CommandType } from './command-type';
 
 describe('Command Resolver Test Suite', () => {
     const mockedEventEmitter = mock(EventEmitter);

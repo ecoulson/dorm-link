@@ -1,5 +1,5 @@
 import { Injectable } from 'noose-injection';
-import { ListingController } from '../../../core/listings/listing-controller';
+import { ListingController } from '../../../core';
 import { ListingLibraryAnnotation } from '../../core-library-annotation';
 import { DisplayListingRender } from './display-listing-renderer';
 

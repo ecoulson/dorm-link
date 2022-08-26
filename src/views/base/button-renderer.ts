@@ -1,6 +1,6 @@
-import { Command } from '../commands/command';
+import { Command } from '../../core';
 
 export interface ButtonRenderer {
     text: string;
-    action?: Command;
+    command?: Command;
 }

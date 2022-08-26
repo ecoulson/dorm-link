@@ -1,6 +1,6 @@
 enum EventType {
     Command = 'Command',
-    PostCreated = 'PostCreated',
+    ListingCreated = 'ListingCreated',
 }
 
 export { EventType };

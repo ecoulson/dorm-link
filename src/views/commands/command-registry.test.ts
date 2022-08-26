@@ -1,5 +1,5 @@
+import { CommandType } from '../../core';
 import { CommandRegistry } from './command-registry';
-import { CommandType } from './command-type';
 
 describe('Command Registry Test Suite', () => {
     beforeEach(() => {

@@ -1,6 +1,4 @@
-import { Event } from '../event/event';
-import { EventType } from '../event/event-type';
-import { Command } from './command';
+import { Command, Event, EventType } from '../../core';
 
 export class CommandEvent implements Event<Command> {
     public readonly type: EventType;
