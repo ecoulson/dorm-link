@@ -1,5 +1,5 @@
 import { instance, mock, reset, verify, when } from 'ts-mockito';
-import { DisplayListingRender } from './display-listing-renderer';
+import { DisplayListingRender } from './renderers/display-listing-renderer';
 import { ListingPropsRetriever } from './listing-props-retriever';
 import { ListingView } from './listing-view';
 
