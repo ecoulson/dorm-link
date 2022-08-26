@@ -1,5 +1,7 @@
-import { randomUUID } from 'crypto';
 import { Injectable } from 'noose-injection';
+import { UUIDGeneratorAnnotation } from '../identifiers/identifier-annotations';
+import { UUIDGenerator } from '../identifiers/uuid-generator';
+import { RedirectCommand } from '../navigation/redirect-command';
 import { ContactInformation } from './contact-information/contact-information';
 import { ContactMethodType } from './contact-information/contact-method-type';
 import { CreateContactInfoParameters } from './contact-information/create-contact-info-parameters';
@@ -15,30 +17,32 @@ import { ListingBroker } from './listing-broker';
 export class ListingService {
     constructor(
         @ListingBrokerAnnotation.inject()
-        private readonly listingBroker: ListingBroker
+        private readonly listingBroker: ListingBroker,
+        @UUIDGeneratorAnnotation.inject()
+        private readonly uuidGenerator: UUIDGenerator
     ) {}
 
     async create(
         contactInfoParameters: CreateContactInfoParameters,
-        listing: CreateListingParameters
-    ): Promise<Listing> {
+        listingParameters: CreateListingParameters
+    ): Promise<RedirectCommand> {
         const status = await this.listingBroker.insert(
             new Listing(
-                randomUUID(),
+                this.uuidGenerator.generate(),
                 this.createContactInfo(contactInfoParameters),
-                listing.city,
-                listing.images,
-                listing.price
+                listingParameters.city,
+                listingParameters.images,
+                listingParameters.price
             )
         );
-        return status.value();
+        return new RedirectCommand(`/listing/${status.value().id}`);
     }
 
     private createContactInfo(
         contactInfoParameters: CreateContactInfoParameters
     ) {
         return new ContactInformation(
-            randomUUID(),
+            this.uuidGenerator.generate(),
             contactInfoParameters.name,
             contactInfoParameters.school,
             contactInfoParameters.contactMethods.map((method) =>
@@ -51,13 +55,13 @@ export class ListingService {
         switch (methodParameters.type) {
             case ContactMethodType.Phone:
                 return new PhoneContactMethod(
-                    randomUUID(),
+                    this.uuidGenerator.generate(),
                     methodParameters.value
                 );
             case ContactMethodType.Email:
             default:
                 return new EmailContactMethod(
-                    randomUUID(),
+                    this.uuidGenerator.generate(),
                     methodParameters.value
                 );
         }

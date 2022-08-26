@@ -5,6 +5,7 @@ import { SearchListingsRequest } from './search-listings-request';
 import { GetListingRequest } from './get-listing-request';
 import { Injectable } from 'noose-injection';
 import { ListingServiceAnnotation } from './listing-annotations';
+import { RedirectCommand } from '../navigation/redirect-command';
 
 @Injectable()
 export class ListingController {
@@ -13,7 +14,7 @@ export class ListingController {
         private readonly service: ListingService
     ) {}
 
-    async create(request: CreateListingRequest): Promise<Listing> {
+    async create(request: CreateListingRequest): Promise<RedirectCommand> {
         return this.service.create(request.contactInformation, request.listing);
     }
 

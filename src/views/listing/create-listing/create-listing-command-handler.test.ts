@@ -52,11 +52,7 @@ describe('Create Listing Command Handler', () => {
         };
         when(mockedNetworkManager.makeRequest(anything())).thenResolve({
             headers: {},
-            data: {
-                redirectCommand: new RedirectCommand(
-                    'http://fake-domain.com/listing/id'
-                ),
-            },
+            data: new RedirectCommand('http://fake-domain.com/listing/id'),
             statusCode: 200,
         });
 

@@ -8,6 +8,7 @@ import {
     verify,
     when,
 } from 'ts-mockito';
+import { RedirectCommand } from '../navigation/redirect-command';
 import { ContactInformation } from './contact-information/contact-information';
 import { Listing } from './listing';
 import { ListingController } from './listing-controller';
@@ -22,20 +23,11 @@ describe('Listing Controller Test Suite', () => {
     });
 
     test('Should create a listing', async () => {
-        const expectedListing = new Listing(
-            randomUUID(),
-            new ContactInformation(
-                randomUUID(),
-                'Evan Coulson',
-                'Harvey Mudd College',
-                []
-            ),
-            'Los Angeles',
-            [],
-            1000
+        const expectedCommand = new RedirectCommand(
+            'http://fake-domain.com/listing/id'
         );
         when(mockedListingService.create(anything(), anything())).thenResolve(
-            expectedListing
+            expectedCommand
         );
 
         const actualListing = await controller.create({
@@ -51,7 +43,7 @@ describe('Listing Controller Test Suite', () => {
             },
         });
 
-        expect(actualListing).toEqual(expectedListing);
+        expect(actualListing).toEqual(expectedCommand);
         verify(mockedListingService.create(anything(), anything())).once();
     });
 

@@ -1,6 +1,16 @@
 import { randomUUID } from 'crypto';
-import { anyOfClass, instance, mock, reset, verify, when } from 'ts-mockito';
+import {
+    anyOfClass,
+    capture,
+    instance,
+    mock,
+    reset,
+    verify,
+    when,
+} from 'ts-mockito';
 import { Status } from '../../common/status';
+import { UUIDGenerator } from '../identifiers/uuid-generator';
+import { RedirectCommand } from '../navigation/redirect-command';
 import { ContactInformation } from './contact-information/contact-information';
 import { ContactMethodType } from './contact-information/contact-method-type';
 import { EmailContactMethod } from './contact-information/email-contact-method';
@@ -10,30 +20,37 @@ import { ListingService } from './listing-service';
 
 describe('Listing Service Test Suite', () => {
     const mockedBroker = mock(ListingBroker);
-    const service = new ListingService(instance(mockedBroker));
+    const mockedUUIDGenerator = mock(UUIDGenerator);
+    const service = new ListingService(
+        instance(mockedBroker),
+        instance(mockedUUIDGenerator)
+    );
 
     beforeEach(() => {
         reset(mockedBroker);
+        reset(mockedUUIDGenerator);
     });
 
     test('Should create a listing', async () => {
+        const id = randomUUID();
         const expectedListing = new Listing(
-            randomUUID(),
-            new ContactInformation(
-                randomUUID(),
-                'Evan Coulson',
-                'Harvey Mudd College',
-                [new EmailContactMethod(randomUUID(), 'ecoulson@g.hmc.edu')]
-            ),
+            id,
+            new ContactInformation(id, 'Evan Coulson', 'Harvey Mudd College', [
+                new EmailContactMethod(id, 'ecoulson@g.hmc.edu'),
+            ]),
             'Los Angeles',
             [],
             10000
         );
+        const expectedRedirectCommand = new RedirectCommand(
+            `/listing/${expectedListing.id}`
+        );
         when(mockedBroker.insert(anyOfClass(Listing))).thenResolve(
             Status.ok(expectedListing)
         );
+        when(mockedUUIDGenerator.generate()).thenReturn(id);
 
-        const listing = await service.create(
+        const redirectCommand = await service.create(
             {
                 name: 'Evan Coulson',
                 school: 'Harvey Mudd College',
@@ -51,8 +68,11 @@ describe('Listing Service Test Suite', () => {
             }
         );
 
-        expect(listing).toEqual(expectedListing);
+        expect(redirectCommand).toEqual(expectedRedirectCommand);
         verify(mockedBroker.insert(anyOfClass(Listing))).once();
+        verify(mockedUUIDGenerator.generate()).thrice();
+        const [listing] = capture(mockedBroker.insert).last();
+        expect(listing).toEqual(expectedListing);
     });
 
     test('Should get a listing by id', async () => {

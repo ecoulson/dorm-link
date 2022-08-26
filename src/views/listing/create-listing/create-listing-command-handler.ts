@@ -1,4 +1,4 @@
-import { EventEmitter } from '../../../core';
+import { EventEmitter, RedirectCommand } from '../../../core';
 import { CommandHandler } from '../../commands/command-handler';
 import { HTTPMethod } from '../../network/http-method';
 import { NetworkManager } from '../../network/network-manager';
@@ -19,7 +19,7 @@ export class CreateListingCommandHandler implements CommandHandler {
             body: listingRequest,
         });
         this.eventEmitter.fire(
-            new ListingCreatedEvent(response.data.redirectCommand)
+            new ListingCreatedEvent(response.data as RedirectCommand)
         );
     }
 }
