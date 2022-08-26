@@ -1,9 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { CoreLibrary } from '../../core';
+import { Routes } from '../../core';
+import { createNextRouter } from '../../core/api/create-next-router';
 
-export default async function listingHandler(
-    request: NextApiRequest,
-    response: NextApiResponse
-) {
-    response.status(200).json(await CoreLibrary.listing.create(request.body));
-}
+export default createNextRouter(Routes.listing);

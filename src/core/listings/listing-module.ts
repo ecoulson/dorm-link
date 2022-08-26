@@ -1,7 +1,9 @@
 import { Module } from 'noose-injection';
+import { ListingRouteHandler } from './api/listing-route-handler';
 import {
     ListingBrokerAnnotation,
     ListingControllerAnnotation,
+    ListingRouteHandlerAnnotation,
     ListingServiceAnnotation,
 } from './listing-annotations';
 import { ListingBroker } from './listing-broker';
@@ -13,5 +15,6 @@ export class ListingModule extends Module {
         this.registerClass(ListingBrokerAnnotation, ListingBroker);
         this.registerClass(ListingServiceAnnotation, ListingService);
         this.registerClass(ListingControllerAnnotation, ListingController);
+        this.registerClass(ListingRouteHandlerAnnotation, ListingRouteHandler);
     }
 }
