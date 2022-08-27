@@ -6,10 +6,11 @@ import { ButtonRendererFiller } from '../base/fillers/button-renderer-filler';
 import { TextInputRendererFiller } from '../base/fillers/text-input-renderer-filler';
 import { InputType } from '../base/input-type';
 import { ListingLibraryAnnotation } from '../core-library-annotation';
+import { FormSectionRenderer } from '../forms/renderer/form-section-renderer';
 import { SubmitFormCommand } from '../forms/submit-form-command';
-import { ContactInformationFormSectionRenderer } from './create-listing/renderers/contact-information-form-section-renderer';
 import { CreateListingRenderer } from './create-listing/renderers/create-listing-renderer';
-import { ListingFormSectionRenderer } from './create-listing/renderers/listing-form-section-renderer';
+import { ImageInputRenderer } from './create-listing/renderers/image-input-renderer';
+import { ContactMethodInputRender } from './display-listing/renderers/contact-method-input-renderer';
 import { DisplayListingRender } from './display-listing/renderers/display-listing-renderer';
 
 @Injectable()
@@ -54,10 +55,7 @@ export class ListingView {
         return Builder<CreateListingRenderer>()
             .form({
                 name: 'create-listing-form',
-                sections: {
-                    listing: this.fillListingSection(),
-                    contactInformation: this.fillContactInformationSection(),
-                },
+                sections: this.fillSections(),
                 submit: this.buttonFiller.fill(
                     'Create Listing',
                     Optional.of(new SubmitFormCommand('create-listing-form'))
@@ -66,43 +64,45 @@ export class ListingView {
             .build();
     }
 
+    private fillSections() {
+        return [
+            this.fillListingSection(),
+            this.fillContactInformationSection(),
+        ];
+    }
+
     private fillListingSection() {
-        return Builder<ListingFormSectionRenderer>()
+        return Builder<FormSectionRenderer>()
             .header({
                 description: 'Provide information about your listing.',
             })
-            .sections({
-                city: this.textInputFiller.fill(
+            .contents([
+                this.textInputFiller.fill(
                     'city',
                     'City',
                     Optional.of('Los Angeles...')
                 ),
-                price: this.textInputFiller.fill(
-                    'price',
-                    'Price ($USD / night)'
-                ),
-                images: {
+                this.textInputFiller.fill('price', 'Price ($USD / night)'),
+                {
                     url: this.textInputFiller.fill('image', 'Image URL'),
                     type: InputType.IMAGE_URL,
                     addImageButton: this.buttonFiller.fill('Add Image'),
-                },
-            })
+                } as ImageInputRenderer,
+            ])
             .build();
     }
 
     private fillContactInformationSection() {
-        return Builder<ContactInformationFormSectionRenderer>()
+        return Builder<FormSectionRenderer>()
             .header({
                 description:
                     'Provide information and methods for people intersted in your property to contact you.',
             })
-            .sections({
-                name: this.textInputFiller.fill('name', 'Name'),
-                school: this.textInputFiller.fill(
-                    'school',
-                    'University / College'
-                ),
-                contactMethods: {
+            .contents([
+                this.textInputFiller.fill('name', 'Name'),
+                this.textInputFiller.fill('school', 'University / College'),
+                {
+                    type: InputType.CONTACT_METHOD,
                     email: this.textInputFiller.fill('email', 'Email'),
                     phoneNumber: this.textInputFiller.fill(
                         'phoneNumber',
@@ -110,8 +110,8 @@ export class ListingView {
                     ),
                     addEmailButton: this.buttonFiller.fill('Add Email'),
                     addPhoneNumber: this.buttonFiller.fill('Add Phone Number'),
-                },
-            })
+                } as ContactMethodInputRender,
+            ])
             .build();
     }
 }

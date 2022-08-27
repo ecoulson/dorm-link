@@ -2,6 +2,9 @@ import React from 'react';
 import { Optional } from '../../../../common/optional';
 import { ButtonComponent } from '../../../base/components/button-component';
 import { TextInputComponent } from '../../../base/components/text-input-component';
+import { TextInputRenderer } from '../../../base/renderers/text-input-renderer';
+import { ContactMethodInputRender } from '../../display-listing/renderers/contact-method-input-renderer';
+import { ImageInputRenderer } from '../renderers/image-input-renderer';
 import { ContactMethodInputComponent } from './contact-method-input-component';
 import { CreateListingComponentProps } from './create-listing-component-props';
 import { ImageInputComponent } from './image-input-component';
@@ -12,48 +15,53 @@ export function CreateListingComponent({ model }: CreateListingComponentProps) {
     return (
         <form name={renderer.form.name} onSubmit={(e) => e.preventDefault()}>
             <div>
-                <h2>{renderer.form.sections.listing.header.description}</h2>
+                <h2>{renderer.form.sections[0].header.description}</h2>
                 <TextInputComponent
                     value={Optional.empty()}
-                    renderer={renderer.form.sections.listing.sections.city}
+                    renderer={
+                        renderer.form.sections[0]
+                            .contents[0] as TextInputRenderer
+                    }
                     onChange={() => {}}
                 />
                 <TextInputComponent
                     value={Optional.empty()}
-                    renderer={renderer.form.sections.listing.sections.price}
+                    renderer={
+                        renderer.form.sections[0]
+                            .contents[1] as TextInputRenderer
+                    }
                     onChange={() => {}}
                 />
                 <ImageInputComponent
-                    renderer={renderer.form.sections.listing.sections.images}
+                    renderer={
+                        renderer.form.sections[0]
+                            .contents[2] as ImageInputRenderer
+                    }
                     onChange={() => {}}
                 />
             </div>
             <div>
-                <h2>
-                    {
-                        renderer.form.sections.contactInformation.header
-                            .description
-                    }
-                </h2>
+                <h2>{renderer.form.sections[1].header.description}</h2>
                 <TextInputComponent
                     value={Optional.empty()}
                     renderer={
-                        renderer.form.sections.contactInformation.sections.name
+                        renderer.form.sections[1]
+                            .contents[0] as TextInputRenderer
                     }
                     onChange={() => {}}
                 />
                 <TextInputComponent
                     value={Optional.empty()}
                     renderer={
-                        renderer.form.sections.contactInformation.sections
-                            .school
+                        renderer.form.sections[1]
+                            .contents[1] as TextInputRenderer
                     }
                     onChange={() => {}}
                 />
                 <ContactMethodInputComponent
                     renderer={
-                        renderer.form.sections.contactInformation.sections
-                            .contactMethods
+                        renderer.form.sections[1]
+                            .contents[2] as ContactMethodInputRender
                     }
                     onChange={() => {}}
                 />

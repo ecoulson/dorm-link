@@ -2,9 +2,12 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 import { instance, mock, reset } from 'ts-mockito';
 import { InputType } from '../../../base/input-type';
+import { TextInputRenderer } from '../../../base/renderers/text-input-renderer';
 import { CommandDispatcher } from '../../../commands/command-dispatcher';
 import { SubmitFormCommand } from '../../../forms/submit-form-command';
+import { ContactMethodInputRender } from '../../display-listing/renderers/contact-method-input-renderer';
 import { CreateListingViewModel } from '../create-listing-view-model';
+import { ImageInputRenderer } from '../renderers/image-input-renderer';
 import { CreateListingComponent } from './create-listing-component';
 
 describe('Create Listing Component Test Suite', () => {
@@ -21,25 +24,25 @@ describe('Create Listing Component Test Suite', () => {
                     new CreateListingViewModel({
                         form: {
                             name: 'create-listing-form',
-                            sections: {
-                                listing: {
+                            sections: [
+                                {
                                     header: {
                                         description:
                                             'Provide information about your listing.',
                                     },
-                                    sections: {
-                                        city: {
+                                    contents: [
+                                        {
                                             label: 'City',
                                             name: 'city',
                                             type: InputType.TEXT,
                                             placeholder: 'Los Angeles...',
-                                        },
-                                        price: {
+                                        } as TextInputRenderer,
+                                        {
                                             label: 'Price ($USD / night)',
                                             name: 'price',
                                             type: InputType.TEXT,
-                                        },
-                                        images: {
+                                        } as TextInputRenderer,
+                                        {
                                             type: InputType.IMAGE_URL,
                                             url: {
                                                 label: 'Image URL',
@@ -49,26 +52,27 @@ describe('Create Listing Component Test Suite', () => {
                                             addImageButton: {
                                                 text: 'Add Image',
                                             },
-                                        },
-                                    },
+                                        } as ImageInputRenderer,
+                                    ],
                                 },
-                                contactInformation: {
+                                {
                                     header: {
                                         description:
                                             'Provide information and methods for people intersted in your property to contact you.',
                                     },
-                                    sections: {
-                                        name: {
+                                    contents: [
+                                        {
                                             label: 'Name',
                                             name: 'name',
                                             type: InputType.TEXT,
-                                        },
-                                        school: {
+                                        } as TextInputRenderer,
+                                        {
                                             label: 'University / College',
                                             name: 'school',
                                             type: InputType.TEXT,
-                                        },
-                                        contactMethods: {
+                                        } as TextInputRenderer,
+                                        {
+                                            type: InputType.CONTACT_METHOD,
                                             email: {
                                                 label: 'Email',
                                                 name: 'email',
@@ -85,10 +89,10 @@ describe('Create Listing Component Test Suite', () => {
                                             addPhoneNumber: {
                                                 text: 'Add Phone Number',
                                             },
-                                        },
-                                    },
+                                        } as ContactMethodInputRender,
+                                    ],
                                 },
-                            },
+                            ],
                             submit: {
                                 text: 'Create Listing',
                                 command: new SubmitFormCommand(

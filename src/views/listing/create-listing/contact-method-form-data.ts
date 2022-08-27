@@ -1,6 +1,6 @@
 import { ContactMethodType } from '../../../core';
 
-export interface ContactMethodForm {
+export interface ContactMethodFormData {
     type: ContactMethodType;
     value: string;
 }

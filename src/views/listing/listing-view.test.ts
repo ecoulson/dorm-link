@@ -9,8 +9,11 @@ import {
     ListingController,
 } from '../../core';
 import { InputType } from '../base/input-type';
+import { TextInputRenderer } from '../base/renderers/text-input-renderer';
 import { SubmitFormCommand } from '../forms/submit-form-command';
 import { CreateListingRenderer } from './create-listing/renderers/create-listing-renderer';
+import { ImageInputRenderer } from './create-listing/renderers/image-input-renderer';
+import { ContactMethodInputRender } from './display-listing/renderers/contact-method-input-renderer';
 import { ListingView } from './listing-view';
 
 describe('Listing View Test Suite', () => {
@@ -65,25 +68,25 @@ describe('Listing View Test Suite', () => {
         expect(renderer).toEqual<CreateListingRenderer>({
             form: {
                 name: 'create-listing-form',
-                sections: {
-                    listing: {
+                sections: [
+                    {
                         header: {
                             description:
                                 'Provide information about your listing.',
                         },
-                        sections: {
-                            city: {
+                        contents: [
+                            {
                                 label: 'City',
                                 name: 'city',
                                 type: InputType.TEXT,
                                 placeholder: 'Los Angeles...',
-                            },
-                            price: {
+                            } as TextInputRenderer,
+                            {
                                 label: 'Price ($USD / night)',
                                 name: 'price',
                                 type: InputType.TEXT,
-                            },
-                            images: {
+                            } as TextInputRenderer,
+                            {
                                 type: InputType.IMAGE_URL,
                                 url: {
                                     label: 'Image URL',
@@ -93,26 +96,27 @@ describe('Listing View Test Suite', () => {
                                 addImageButton: {
                                     text: 'Add Image',
                                 },
-                            },
-                        },
+                            } as ImageInputRenderer,
+                        ],
                     },
-                    contactInformation: {
+                    {
                         header: {
                             description:
                                 'Provide information and methods for people intersted in your property to contact you.',
                         },
-                        sections: {
-                            name: {
+                        contents: [
+                            {
                                 label: 'Name',
                                 name: 'name',
                                 type: InputType.TEXT,
-                            },
-                            school: {
+                            } as TextInputRenderer,
+                            {
                                 label: 'University / College',
                                 name: 'school',
                                 type: InputType.TEXT,
-                            },
-                            contactMethods: {
+                            } as TextInputRenderer,
+                            {
+                                type: InputType.CONTACT_METHOD,
                                 email: {
                                     label: 'Email',
                                     name: 'email',
@@ -129,10 +133,10 @@ describe('Listing View Test Suite', () => {
                                 addPhoneNumber: {
                                     text: 'Add Phone Number',
                                 },
-                            },
-                        },
+                            } as ContactMethodInputRender,
+                        ],
                     },
-                },
+                ],
                 submit: {
                     text: 'Create Listing',
                     command: new SubmitFormCommand('create-listing-form'),
