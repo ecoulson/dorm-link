@@ -1,11 +1,7 @@
 import React from 'react';
-import { ListingViewModel } from './listing-view-model';
+import { ListingComponentProps } from './listing-component-props';
 
-interface ListingProps {
-    model: ListingViewModel;
-}
-
-export function Listing(props: ListingProps) {
+export function ListingComponent(props: ListingComponentProps) {
     const renderer = props.model.render();
     return (
         <div>

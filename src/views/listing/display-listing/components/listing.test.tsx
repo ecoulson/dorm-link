@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { Listing } from './listing';
-import { ListingViewModel } from './listing-view-model';
+import { ListingComponent } from './listing-component';
+import { ListingViewModel } from '../listing-view-model';
 
 describe('Listing Component Test Suite', () => {
     test('Should render a listing component', async () => {
@@ -23,7 +23,7 @@ describe('Listing Component Test Suite', () => {
             },
         };
 
-        render(<Listing model={new ListingViewModel(renderer)} />);
+        render(<ListingComponent model={new ListingViewModel(renderer)} />);
 
         const image = (await screen.findByRole('img')) as HTMLImageElement;
         expect(screen.queryByText('Los Angeles')).toBeTruthy();

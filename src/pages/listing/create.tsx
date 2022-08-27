@@ -1,16 +1,13 @@
 import Head from 'next/head';
 import { Views } from '../../views';
-import {
-    CreateListingProps,
-    CreateListingPropsRetriever,
-} from '../../views/listing/create-listing/create-listing-props-retriever';
+import { CreateListingProps } from '../../views/listing/create-listing/create-listing-props';
+import { CreateListingPropsRetriever } from '../../views/listing/create-listing/create-listing-props-retriever';
 
 export async function getServerSideProps() {
     return new CreateListingPropsRetriever(Views.listing).retrieve();
 }
 
 export const CreateListingPage = ({ renderer }: CreateListingProps) => {
-    console.log(renderer);
     return (
         <>
             <Head>

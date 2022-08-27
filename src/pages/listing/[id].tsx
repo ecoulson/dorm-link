@@ -1,11 +1,9 @@
 import type { NextPageContext } from 'next';
 import Head from 'next/head';
 import { Views } from '../../views';
-import { Listing } from '../../views/listing/display-listing/listing';
-import {
-    DisplayListingPageProps,
-    DisplayListingPropsRetriever,
-} from '../../views/listing/display-listing/display-listing-props-retriever';
+import { ListingComponent } from '../../views/listing/display-listing/components/listing-component';
+import { DisplayListingPageProps } from '../../views/listing/display-listing/display-listing-props';
+import { DisplayListingPropsRetriever } from '../../views/listing/display-listing/display-listing-props-retriever';
 import { ListingViewModel } from '../../views/listing/display-listing/listing-view-model';
 
 export async function getServerSideProps(context: NextPageContext) {
@@ -23,7 +21,7 @@ export const ListingPage = ({ renderer }: DisplayListingPageProps) => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Listing model={new ListingViewModel(renderer)} />
+            <ListingComponent model={new ListingViewModel(renderer)} />
         </>
     );
 };

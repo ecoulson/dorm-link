@@ -2,11 +2,7 @@ import { GetServerSidePropsResult } from 'next';
 import { PageContext } from '../../page-context';
 import { PropsRetriever } from '../../props-retriever';
 import { ListingView } from '../listing-view';
-import { CreateListingRenderer } from './renderers/create-listing-renderer';
-
-export interface CreateListingProps {
-    renderer: CreateListingRenderer;
-}
+import { CreateListingProps } from './create-listing-props';
 
 export class CreateListingPropsRetriever
     implements PropsRetriever<CreateListingProps>
