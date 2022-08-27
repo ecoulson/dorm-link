@@ -1,5 +1,5 @@
 import { TextInputRenderer } from '../../../base/renderers/text-input-renderer';
-import { FormSectionHeaderRenderer } from '../../../forms/form-section-header-renderer';
+import { FormSectionHeaderRenderer } from '../../../forms/renderer/form-section-header-renderer';
 import { ImageInputRenderer } from './image-input-renderer';
 
 export interface ListingFormSectionRenderer {

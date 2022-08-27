@@ -4,6 +4,7 @@ import { Optional } from '../../common/optional';
 import type { ListingController } from '../../core';
 import { ButtonRendererFiller } from '../base/fillers/button-renderer-filler';
 import { TextInputRendererFiller } from '../base/fillers/text-input-renderer-filler';
+import { InputType } from '../base/input-type';
 import { ListingLibraryAnnotation } from '../core-library-annotation';
 import { SubmitFormCommand } from '../forms/submit-form-command';
 import { ContactInformationFormSectionRenderer } from './create-listing/renderers/contact-information-form-section-renderer';
@@ -82,6 +83,7 @@ export class ListingView {
                 ),
                 images: {
                     url: this.textInputFiller.fill('image', 'Image URL'),
+                    type: InputType.IMAGE_URL,
                     addImageButton: this.buttonFiller.fill('Add Image'),
                 },
             })

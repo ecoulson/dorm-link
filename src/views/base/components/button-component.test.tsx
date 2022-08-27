@@ -1,10 +1,11 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { CommandType } from '../../../core';
+import { CommandType, EventEmitter } from '../../../core';
 import { ButtonComponent } from './button-component';
 import { anything, instance, mock, reset, verify } from 'ts-mockito';
 import { CommandDispatcher } from '../../commands/command-dispatcher';
 import { Optional } from '../../../common/optional';
+import { CommandContext } from '../../commands/command-context';
 
 describe('Button Component Test Suite', () => {
     const mockedDispatcher = mock(CommandDispatcher);
@@ -15,14 +16,20 @@ describe('Button Component Test Suite', () => {
 
     test('Should render a button component that dispatches a command', () => {
         render(
-            <ButtonComponent
-                commandDispatcher={instance(mockedDispatcher)}
-                onClick={Optional.empty()}
-                renderer={{
-                    text: 'Button',
-                    command: { type: CommandType.CreateListing },
+            <CommandContext.Provider
+                value={{
+                    eventEmitter: instance(mock(EventEmitter)),
+                    dispatcher: instance(mockedDispatcher),
                 }}
-            />
+            >
+                <ButtonComponent
+                    onClick={Optional.empty()}
+                    renderer={{
+                        text: 'Button',
+                        command: { type: CommandType.CreateListing },
+                    }}
+                />
+            </CommandContext.Provider>
         );
 
         fireEvent.click(screen.getByText('Button'));
@@ -34,13 +41,19 @@ describe('Button Component Test Suite', () => {
     test('Should render a button component that calls the onclick handler', () => {
         const handler = jest.fn();
         render(
-            <ButtonComponent
-                commandDispatcher={instance(mockedDispatcher)}
-                onClick={Optional.of(handler)}
-                renderer={{
-                    text: 'Button',
+            <CommandContext.Provider
+                value={{
+                    eventEmitter: instance(mock(EventEmitter)),
+                    dispatcher: instance(mockedDispatcher),
                 }}
-            />
+            >
+                <ButtonComponent
+                    onClick={Optional.of(handler)}
+                    renderer={{
+                        text: 'Button',
+                    }}
+                />
+            </CommandContext.Provider>
         );
 
         fireEvent.click(screen.getByText('Button'));

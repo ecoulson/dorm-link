@@ -5,5 +5,4 @@ import { ButtonRenderer } from '../renderers/button-renderer';
 export interface ButtonComponentProps {
     renderer: ButtonRenderer;
     onClick: Optional<() => void>;
-    commandDispatcher: CommandDispatcher;
 }

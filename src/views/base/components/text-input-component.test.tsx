@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { InputType } from '../input-type';
 import { TextInputComponent } from './text-input-component';
+import { Optional } from '../../../common/optional';
 
 describe('Text Input Component Test Suite', () => {
     test('Should render a text input component that handles change events', () => {
@@ -14,6 +15,7 @@ describe('Text Input Component Test Suite', () => {
                     type: InputType.TEXT,
                     placeholder: 'Placeholder...',
                 }}
+                value={Optional.empty()}
                 onChange={handler}
             />
         );

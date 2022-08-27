@@ -84,6 +84,7 @@ describe('Listing View Test Suite', () => {
                                 type: InputType.TEXT,
                             },
                             images: {
+                                type: InputType.IMAGE_URL,
                                 url: {
                                     label: 'Image URL',
                                     name: 'image',

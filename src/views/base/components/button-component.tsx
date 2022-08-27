@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CommandContext } from '../../commands/command-context';
 import { ButtonComponentProps } from './button-component-props';
 
-export function ButtonComponent({
-    renderer,
-    onClick,
-    commandDispatcher,
-}: ButtonComponentProps) {
+export function ButtonComponent({ renderer, onClick }: ButtonComponentProps) {
+    const { dispatcher } = useContext(CommandContext);
     function handleClick() {
         if (renderer.command) {
-            commandDispatcher.dispatch(renderer.command);
+            dispatcher.dispatch(renderer.command);
         } else if (onClick.isPresent()) {
             const handler = onClick.get();
             handler();

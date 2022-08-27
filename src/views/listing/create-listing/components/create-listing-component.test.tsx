@@ -40,6 +40,7 @@ describe('Create Listing Component Test Suite', () => {
                                             type: InputType.TEXT,
                                         },
                                         images: {
+                                            type: InputType.IMAGE_URL,
                                             url: {
                                                 label: 'Image URL',
                                                 name: 'image',
@@ -97,7 +98,6 @@ describe('Create Listing Component Test Suite', () => {
                         },
                     })
                 }
-                dispatcher={instance(mockedDispatcher)}
             />
         );
 

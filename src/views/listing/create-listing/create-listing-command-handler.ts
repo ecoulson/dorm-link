@@ -7,7 +7,7 @@ import { CreateListingCommand } from './create-listing-command';
 
 export class CreateListingCommandHandler implements CommandHandler {
     constructor(
-        private readonly commandDispatcher: CommandDispatcher,
+        private readonly dispatcher: CommandDispatcher,
         private readonly networkManager: NetworkManager
     ) {}
 
@@ -18,6 +18,6 @@ export class CreateListingCommandHandler implements CommandHandler {
             method: HTTPMethod.POST,
             body: listingRequest,
         });
-        this.commandDispatcher.dispatch(response.data as RedirectCommand);
+        this.dispatcher.dispatch(response.data as RedirectCommand);
     }
 }
