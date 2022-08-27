@@ -17,7 +17,8 @@
         "noose-injection": "^1.0.10",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "reflect-metadata": "^0.1.13"
+        "reflect-metadata": "^0.1.13",
+        "uuid": "^8.3.2"
     },
     "devDependencies": {
         "@swc/core": "^1.2.241",
@@ -27,6 +28,7 @@
         "@types/node": "18.7.8",
         "@types/react": "18.0.17",
         "@types/react-dom": "18.0.6",
+        "@types/uuid": "^8.3.4",
         "eslint": "8.22.0",
         "eslint-config-next": "12.2.5",
         "jest": "^28.1.3",

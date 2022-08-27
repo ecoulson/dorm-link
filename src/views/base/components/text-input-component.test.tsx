@@ -28,6 +28,5 @@ describe('Text Input Component Test Suite', () => {
 
         expect(handler).toBeCalledWith('input');
         expect(screen.queryByLabelText('Label')).toBeTruthy();
-        expect(screen.queryByDisplayValue('input')).toBeTruthy();
     });
 });

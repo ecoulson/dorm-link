@@ -2,6 +2,7 @@ import React from 'react';
 import { Optional } from '../../../../common/optional';
 import { ButtonComponent } from '../../../base/components/button-component';
 import { TextInputComponent } from '../../../base/components/text-input-component';
+import { ContactMethodInputComponent } from './contact-method-input-component';
 import { CreateListingComponentProps } from './create-listing-component-props';
 import { ImageInputComponent } from './image-input-component';
 
@@ -46,6 +47,13 @@ export function CreateListingComponent({ model }: CreateListingComponentProps) {
                     renderer={
                         renderer.form.sections.contactInformation.sections
                             .school
+                    }
+                    onChange={() => {}}
+                />
+                <ContactMethodInputComponent
+                    renderer={
+                        renderer.form.sections.contactInformation.sections
+                            .contactMethods
                     }
                     onChange={() => {}}
                 />

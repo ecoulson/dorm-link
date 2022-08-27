@@ -45,11 +45,9 @@ describe('Image Input Component Test Suite', () => {
         const images = screen
             .getAllByRole<HTMLImageElement>('img')
             .map((image) => image.src);
-        expect(
-            images
-        ).toEqual([
+        expect(images).toEqual([
             'http://fake-domain.com/image.png',
             'http://fake-domain-2.com/image.png',
-        ])
+        ]);
     });
 });
