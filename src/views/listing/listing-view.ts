@@ -92,7 +92,7 @@ export class ListingView {
         return Builder<ContactInformationFormSectionRenderer>()
             .header({
                 description:
-                    'Provide information and methods for people intersted in your property to contact you',
+                    'Provide information and methods for people intersted in your property to contact you.',
             })
             .sections({
                 name: this.textInputFiller.fill('name', 'Name'),

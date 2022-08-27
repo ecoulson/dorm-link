@@ -98,7 +98,7 @@ describe('Listing View Test Suite', () => {
                     contactInformation: {
                         header: {
                             description:
-                                'Provide information and methods for people intersted in your property to contact you',
+                                'Provide information and methods for people intersted in your property to contact you.',
                         },
                         sections: {
                             name: {

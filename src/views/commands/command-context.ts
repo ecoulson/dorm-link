@@ -8,15 +8,16 @@ import { CommandType, EventEmitter } from '../../core';
 
 const eventEmitter = new EventEmitter();
 const networkManager = new NetworkManager('localhost:3000', axios);
+const dispatcher = new CommandDispatcher(eventEmitter);
 
 CommandRegistry.register(
     CommandType.CreateListing,
-    new CreateListingCommandHandler(eventEmitter, networkManager)
+    new CreateListingCommandHandler(dispatcher, networkManager)
 );
 
 export const DefaultCommandContext = {
     eventEmitter,
-    dispatcher: new CommandDispatcher(eventEmitter),
+    dispatcher,
 };
 
 export const CommandContext = React.createContext(DefaultCommandContext);
