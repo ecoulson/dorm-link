@@ -8,7 +8,10 @@ export class APIRouter {
         request: NextApiRequest,
         response: NextApiResponse
     ): Promise<void> {
-        switch (request.method?.toUpperCase()) {
+        if (!request.method) {
+            return response.status(404).send('');
+        }
+        switch (request.method.toUpperCase()) {
             case 'GET':
                 return this.routeHandler.get(request, response);
             case 'POST':
@@ -18,8 +21,7 @@ export class APIRouter {
             case 'DELETE':
                 return this.routeHandler.delete(request, response);
             default:
-                response.status(404).send('');
-                return;
+                return response.status(404).send('');
         }
     }
 }

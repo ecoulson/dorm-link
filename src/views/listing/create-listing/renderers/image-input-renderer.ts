@@ -1,7 +1,7 @@
-import { ButtonRenderer } from '../../../base/button-renderer';
-import { InputRenderer } from '../../../base/input-renderer';
+import { ButtonRenderer } from '../../../base/renderers/button-renderer';
+import { TextInputRenderer } from '../../../base/renderers/text-input-renderer';
 
 export interface ImageInputRenderer {
-    url: InputRenderer;
+    url: TextInputRenderer;
     addImageButton: ButtonRenderer;
 }
