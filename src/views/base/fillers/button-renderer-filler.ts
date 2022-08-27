@@ -10,7 +10,10 @@ export class ButtonRendererFiller {
     ): ButtonRenderer {
         const builder = Builder<ButtonRenderer>().text(text);
         if (command.isPresent()) {
-            builder.command(command.get());
+            const serializedCommand = JSON.parse(
+                JSON.stringify(command.get())
+            ) as Command;
+            builder.command(serializedCommand);
         }
         return builder.build();
     }
