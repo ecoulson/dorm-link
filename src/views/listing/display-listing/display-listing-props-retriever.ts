@@ -1,14 +1,14 @@
 import { GetServerSidePropsResult } from 'next';
 import { PageContext } from '../../page-context';
 import { PropsRetriever } from '../../props-retriever';
+import { ListingView } from '../listing-view';
 import { DisplayListingRender } from './renderers/display-listing-renderer';
-import { ListingView } from './listing-view';
 
 export interface DisplayListingPageProps {
     renderer: DisplayListingRender;
 }
 
-export class ListingPropsRetriever
+export class DisplayListingPropsRetriever
     implements PropsRetriever<DisplayListingPageProps>
 {
     constructor(private readonly view: ListingView) {}
@@ -23,7 +23,7 @@ export class ListingPropsRetriever
         }
         return {
             props: {
-                renderer: await this.view.displayListing(
+                renderer: await this.view.buildDisplayListingView(
                     context.query['id'] as string
                 ),
             },

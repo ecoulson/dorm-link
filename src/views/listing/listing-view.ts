@@ -7,7 +7,7 @@ import { TextInputRendererFiller } from '../base/fillers/text-input-renderer-fil
 import { ListingLibraryAnnotation } from '../core-library-annotation';
 import { SubmitFormCommand } from '../forms/submit-form-command';
 import { ContactInformationFormSectionRenderer } from './create-listing/renderers/contact-information-form-section-renderer';
-import { CreateListingFormRenderer } from './create-listing/renderers/create-listing-form-renderer';
+import { CreateListingRenderer } from './create-listing/renderers/create-listing-renderer';
 import { ListingFormSectionRenderer } from './create-listing/renderers/listing-form-section-renderer';
 import { DisplayListingRender } from './display-listing/renderers/display-listing-renderer';
 
@@ -49,8 +49,8 @@ export class ListingView {
         };
     }
 
-    buildCreateListingFormView(): CreateListingFormRenderer {
-        return Builder<CreateListingFormRenderer>()
+    buildCreateListingFormView(): CreateListingRenderer {
+        return Builder<CreateListingRenderer>()
             .form({
                 name: 'create-listing-form',
                 sections: {
@@ -65,7 +65,7 @@ export class ListingView {
             .build();
     }
 
-    fillListingSection() {
+    private fillListingSection() {
         return Builder<ListingFormSectionRenderer>()
             .header({
                 description: 'Provide information about your listing.',
@@ -88,7 +88,7 @@ export class ListingView {
             .build();
     }
 
-    fillContactInformationSection() {
+    private fillContactInformationSection() {
         return Builder<ContactInformationFormSectionRenderer>()
             .header({
                 description:

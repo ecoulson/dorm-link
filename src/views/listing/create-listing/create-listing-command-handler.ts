@@ -1,13 +1,13 @@
-import { EventEmitter, RedirectCommand } from '../../../core';
+import { RedirectCommand } from '../../../core';
+import { CommandDispatcher } from '../../commands/command-dispatcher';
 import { CommandHandler } from '../../commands/command-handler';
 import { HTTPMethod } from '../../network/http-method';
 import { NetworkManager } from '../../network/network-manager';
 import { CreateListingCommand } from './create-listing-command';
-import { ListingCreatedEvent } from './listing-created-event';
 
 export class CreateListingCommandHandler implements CommandHandler {
     constructor(
-        private readonly eventEmitter: EventEmitter,
+        private readonly commandDispatcher: CommandDispatcher,
         private readonly networkManager: NetworkManager
     ) {}
 
@@ -18,8 +18,6 @@ export class CreateListingCommandHandler implements CommandHandler {
             method: HTTPMethod.POST,
             body: listingRequest,
         });
-        this.eventEmitter.fire(
-            new ListingCreatedEvent(response.data as RedirectCommand)
-        );
+        this.commandDispatcher.dispatch(response.data as RedirectCommand);
     }
 }

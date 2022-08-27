@@ -10,25 +10,24 @@ import {
 import {
     CreateListingRequest,
     ContactMethodType,
-    EventEmitter,
-    EventType,
     CommandType,
     RedirectCommand,
 } from '../../../core';
+import { CommandDispatcher } from '../../commands/command-dispatcher';
 import { NetworkManager } from '../../network/network-manager';
 import { CreateListingCommand } from './create-listing-command';
 import { CreateListingCommandHandler } from './create-listing-command-handler';
 
 describe('Create Listing Command Handler', () => {
-    const mockedEventEmitter = mock(EventEmitter);
+    const mockedCommandDispatcher = mock(CommandDispatcher);
     const mockedNetworkManager = mock(NetworkManager);
     const handler = new CreateListingCommandHandler(
-        instance(mockedEventEmitter),
+        instance(mockedCommandDispatcher),
         instance(mockedNetworkManager)
     );
 
     beforeEach(() => {
-        reset(mockedEventEmitter);
+        reset(mockedCommandDispatcher);
         reset(mockedNetworkManager);
     });
 
@@ -58,16 +57,13 @@ describe('Create Listing Command Handler', () => {
 
         await handler.handle(new CreateListingCommand(listingRequest));
 
-        verify(mockedEventEmitter.fire(anything())).once();
+        verify(mockedCommandDispatcher.dispatch(anything())).once();
         verify(mockedNetworkManager.makeRequest(anything())).once();
-        const [firedEvent] = capture(mockedEventEmitter.fire).last();
+        const [firedEvent] = capture(mockedCommandDispatcher.dispatch).last();
         const [request] = capture(mockedNetworkManager.makeRequest).last();
         expect(firedEvent).toMatchObject({
-            type: EventType.ListingCreated,
-            data: {
-                type: CommandType.Redirect,
-                url: 'http://fake-domain.com/listing/id',
-            },
+            type: CommandType.Redirect,
+            url: 'http://fake-domain.com/listing/id',
         });
         expect(request).toMatchObject({
             body: listingRequest,

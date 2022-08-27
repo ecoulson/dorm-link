@@ -1,10 +1,10 @@
 import { ViewModel } from '../../view-model';
-import { CreateListingFormRenderer } from './renderers/create-listing-form-renderer';
+import { CreateListingRenderer } from './renderers/create-listing-renderer';
 
 export class CreateListingViewModel implements ViewModel {
-    constructor(private readonly renderer: CreateListingFormRenderer) {}
+    constructor(private readonly renderer: CreateListingRenderer) {}
 
-    render(): CreateListingFormRenderer {
+    render(): CreateListingRenderer {
         return this.renderer;
     }
 }

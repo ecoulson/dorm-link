@@ -10,7 +10,7 @@ import {
 } from '../../core';
 import { InputType } from '../base/input-type';
 import { SubmitFormCommand } from '../forms/submit-form-command';
-import { CreateListingFormRenderer } from './create-listing/renderers/create-listing-form-renderer';
+import { CreateListingRenderer } from './create-listing/renderers/create-listing-renderer';
 import { ListingView } from './listing-view';
 
 describe('Listing View Test Suite', () => {
@@ -62,7 +62,7 @@ describe('Listing View Test Suite', () => {
     test('Should fill create listing form renderer', () => {
         const renderer = view.buildCreateListingFormView();
 
-        expect(renderer).toEqual<CreateListingFormRenderer>({
+        expect(renderer).toEqual<CreateListingRenderer>({
             form: {
                 name: 'create-listing-form',
                 sections: {

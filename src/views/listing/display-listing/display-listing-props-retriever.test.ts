@@ -1,18 +1,20 @@
 import { instance, mock, reset, verify, when } from 'ts-mockito';
 import { DisplayListingRender } from './renderers/display-listing-renderer';
-import { ListingPropsRetriever } from './listing-props-retriever';
-import { ListingView } from './listing-view';
+import { DisplayListingPropsRetriever } from './display-listing-props-retriever';
+import { ListingView } from '../listing-view';
 
-describe('Listing Props Retriever Test Suite', () => {
+describe('Display Listing Props Retriever Test Suite', () => {
     const mockedListingView = mock(ListingView);
-    const retriever = new ListingPropsRetriever(instance(mockedListingView));
+    const retriever = new DisplayListingPropsRetriever(
+        instance(mockedListingView)
+    );
 
     beforeEach(() => {
         reset(mockedListingView);
     });
 
     test('Should get props for the listing', async () => {
-        when(mockedListingView.displayListing('id')).thenResolve(
+        when(mockedListingView.buildDisplayListingView('id')).thenResolve(
             {} as DisplayListingRender
         );
         const props = await retriever.retrieve({
@@ -27,11 +29,13 @@ describe('Listing Props Retriever Test Suite', () => {
                 renderer: {},
             },
         });
-        verify(mockedListingView.displayListing('id')).once();
+        verify(mockedListingView.buildDisplayListingView('id')).once();
     });
 
     test('Should get not found for the listing with no query parameters', async () => {
-        when(mockedListingView.displayListing('id')).thenResolve({} as any);
+        when(mockedListingView.buildDisplayListingView('id')).thenResolve(
+            {} as any
+        );
         const props = await retriever.retrieve({
             pathname: '',
             query: {},
@@ -40,6 +44,6 @@ describe('Listing Props Retriever Test Suite', () => {
         expect(props).toEqual({
             notFound: true,
         });
-        verify(mockedListingView.displayListing('id')).never();
+        verify(mockedListingView.buildDisplayListingView('id')).never();
     });
 });
