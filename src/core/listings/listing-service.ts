@@ -32,7 +32,7 @@ export class ListingService {
                 this.createContactInfo(contactInfoParameters),
                 listingParameters.city,
                 listingParameters.images,
-                listingParameters.price * 100
+                listingParameters.price
             )
         );
         return new RedirectCommand(`/listing/${status.value().id}`);

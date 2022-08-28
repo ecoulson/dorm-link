@@ -20,7 +20,7 @@ export class CreateListingViewModel implements ViewModel {
                 ...form,
                 listing: {
                     ...form.listing,
-                    price: parseFloat(form.listing.price),
+                    price: Math.round(parseFloat(form.listing.price) * 100),
                 },
             })
         );
