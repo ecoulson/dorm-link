@@ -6,6 +6,8 @@ import { CommandRegistry } from './command-registry';
 import axios from 'axios';
 import { CommandType, EventEmitter } from '../../core';
 import { CommandResolver } from './command-resolver';
+import { RedirectCommandHandler } from '../navigation/redirect-command-handler';
+import Router from 'next/router';
 
 const eventEmitter = new EventEmitter();
 const networkManager = new NetworkManager('http://localhost:3000', axios);
@@ -16,6 +18,10 @@ resolver.setup();
 CommandRegistry.register(
     CommandType.CreateListing,
     new CreateListingCommandHandler(dispatcher, networkManager)
+);
+CommandRegistry.register(
+    CommandType.Redirect,
+    new RedirectCommandHandler(Router)
 );
 
 export const DefaultCommandContext = {

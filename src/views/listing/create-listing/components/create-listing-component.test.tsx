@@ -1,10 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { instance, mock, reset } from 'ts-mockito';
+import { mock, reset } from 'ts-mockito';
 import { InputType } from '../../../base/input-type';
 import { TextInputRenderer } from '../../../base/renderers/text-input-renderer';
 import { CommandDispatcher } from '../../../commands/command-dispatcher';
-import { SubmitFormCommand } from '../../../forms/submit-form-command';
 import { ContactMethodInputRender } from '../../display-listing/renderers/contact-method-input-renderer';
 import { CreateListingViewModel } from '../create-listing-view-model';
 import { ImageInputRenderer } from '../renderers/image-input-renderer';
@@ -95,9 +94,6 @@ describe('Create Listing Component Test Suite', () => {
                             ],
                             submit: {
                                 text: 'Create Listing',
-                                command: new SubmitFormCommand(
-                                    'create-listing-form'
-                                ),
                             },
                         },
                     })
