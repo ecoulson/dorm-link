@@ -1,8 +1,6 @@
 import { randomUUID } from 'crypto';
 import { anything, instance, mock, reset, when } from 'ts-mockito';
 import {
-    Command,
-    CommandType,
     ContactInformation,
     EmailContactMethod,
     Listing,
@@ -10,7 +8,6 @@ import {
 } from '../../core';
 import { InputType } from '../base/input-type';
 import { TextInputRenderer } from '../base/renderers/text-input-renderer';
-import { SubmitFormCommand } from '../forms/submit-form-command';
 import { CreateListingRenderer } from './create-listing/renderers/create-listing-renderer';
 import { ImageInputRenderer } from './create-listing/renderers/image-input-renderer';
 import { ContactMethodInputRender } from './display-listing/renderers/contact-method-input-renderer';
@@ -139,7 +136,6 @@ describe('Listing View Test Suite', () => {
                 ],
                 submit: {
                     text: 'Create Listing',
-                    command: new SubmitFormCommand('create-listing-form'),
                 },
             },
         });

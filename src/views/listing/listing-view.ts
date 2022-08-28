@@ -58,7 +58,7 @@ export class ListingView {
                 sections: this.fillSections(),
                 submit: this.buttonFiller.fill(
                     'Create Listing',
-                    Optional.of(new SubmitFormCommand('create-listing-form'))
+                    Optional.empty()
                 ),
             })
             .build();
