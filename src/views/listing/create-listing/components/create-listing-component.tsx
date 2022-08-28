@@ -1,12 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { Optional } from '../../../../common/optional';
 import { ButtonComponent } from '../../../base/components/button-component';
 import { TextInputComponent } from '../../../base/components/text-input-component';
 import { TextInputRenderer } from '../../../base/renderers/text-input-renderer';
-import { CommandContext } from '../../../commands/command-context';
 import { useForm } from '../../../forms/use-form';
 import { ContactMethodInputRender } from '../../display-listing/renderers/contact-method-input-renderer';
-import { CreateListingCommand } from '../create-listing-command';
 import { CreateListingFormData } from '../create-listing-form-data';
 import { ImageInputRenderer } from '../renderers/image-input-renderer';
 import { ContactMethodInputComponent } from './contact-method-input-component';
@@ -16,7 +14,6 @@ import { ImageInputComponent } from './image-input-component';
 export function CreateListingComponent({ model }: CreateListingComponentProps) {
     // create a use form hook that updates a form storage. This storage can be accessed by the command handler
     const renderer = model.render();
-    const { dispatcher } = useContext(CommandContext);
     const { form, setForm } = useForm<CreateListingFormData>(
         renderer.form.name,
         {
@@ -34,15 +31,7 @@ export function CreateListingComponent({ model }: CreateListingComponentProps) {
     );
 
     function handleSubmit() {
-        dispatcher.dispatch(
-            new CreateListingCommand({
-                ...form,
-                listing: {
-                    ...form.listing,
-                    price: parseFloat(form.listing.price),
-                },
-            })
-        );
+        model.createListing(form);
     }
 
     return (

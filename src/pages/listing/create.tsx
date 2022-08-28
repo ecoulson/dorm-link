@@ -24,8 +24,7 @@ export const CreateListingPage = ({ renderer }: CreateListingProps) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <CreateListingComponent
-                dispatcher={dispatcher}
-                model={new CreateListingViewModel(renderer)}
+                model={new CreateListingViewModel(renderer, dispatcher)}
             />
         </>
     );
