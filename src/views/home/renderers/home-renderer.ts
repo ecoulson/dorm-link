@@ -21,6 +21,7 @@ export interface HomeRenderer {
     footer: {
         contactUs: {
             text: string;
+            email: string;
             emailLink: string;
         };
     };

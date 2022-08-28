@@ -41,7 +41,8 @@ export class HomeView {
             })
             .footer({
                 contactUs: {
-                    text: 'Contact us at dormlinktech@gmail.com',
+                    text: 'Contact us at ',
+                    email: 'dormlinktech@gmail.com',
                     emailLink: 'mailto:dormlinktech@gmail.com',
                 },
             })

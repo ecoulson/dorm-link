@@ -8,7 +8,7 @@ export function CitySearchBoxComponent({
     renderer,
     handleSearch,
 }: CitySearchBoxComponentProps) {
-    const [city, setCity] = useState(renderer.input.value as string);
+    const [city, setCity] = useState(renderer.input.value ?? '');
 
     return (
         <>

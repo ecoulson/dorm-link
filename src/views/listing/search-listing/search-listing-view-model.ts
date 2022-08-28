@@ -1,7 +1,7 @@
-import { RedirectCommand } from '../../../core';
 import { CommandDispatcher } from '../../commands/command-dispatcher';
 import { ViewModel } from '../../view-model';
 import { SearchListingRenderer } from './renderers/search-listing-renderer';
+import { SearchListingCommand } from './search-listing-command';
 
 export class SearchListingViewModel implements ViewModel {
     constructor(
@@ -14,8 +14,6 @@ export class SearchListingViewModel implements ViewModel {
     }
 
     search(city: string): void {
-        this.dispatcher.dispatch(
-            new RedirectCommand(`/listing/search?city=${encodeURI(city)}`)
-        );
+        this.dispatcher.dispatch(new SearchListingCommand(city));
     }
 }
