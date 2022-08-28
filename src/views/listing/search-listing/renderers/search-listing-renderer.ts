@@ -3,5 +3,7 @@ import { SearchBoxRenderer } from './search-box-renderer';
 
 export interface SearchListingRenderer {
     searchbox: SearchBoxRenderer;
-    listings: ListingSearchResultRenderer[];
+    listingResults: ListingSearchResultRenderer[];
+    noResultsText: string;
+    resultCountText: string;
 }

@@ -10,7 +10,8 @@ describe('Text Input Renderer Filler Test Suite', () => {
         const renderer = filler.fill(
             'name',
             'label',
-            Optional.of('placeholder')
+            Optional.of('placeholder'),
+            Optional.of('value')
         );
 
         expect(renderer).toEqual<TextInputRenderer>({
@@ -18,6 +19,7 @@ describe('Text Input Renderer Filler Test Suite', () => {
             type: InputType.TEXT,
             label: 'label',
             placeholder: 'placeholder',
+            value: 'value',
         });
     });
 });

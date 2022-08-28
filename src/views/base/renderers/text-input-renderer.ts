@@ -4,4 +4,5 @@ export interface TextInputRenderer extends InputRenderer {
     label: string;
     name: string;
     placeholder?: string;
+    value?: string;
 }

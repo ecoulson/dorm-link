@@ -7,7 +7,8 @@ export class TextInputRendererFiller {
     fill(
         name: string,
         label: string,
-        placeholder: Optional<string> = Optional.empty()
+        placeholder: Optional<string> = Optional.empty(),
+        value: Optional<string> = Optional.empty()
     ): TextInputRenderer {
         const builder = Builder<TextInputRenderer>()
             .name(name)
@@ -15,6 +16,9 @@ export class TextInputRendererFiller {
             .type(InputType.TEXT);
         if (placeholder.isPresent()) {
             builder.placeholder(placeholder.get());
+        }
+        if (value.isPresent()) {
+            builder.value(value.get());
         }
         return builder.build();
     }

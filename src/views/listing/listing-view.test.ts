@@ -167,12 +167,13 @@ describe('Listing View Test Suite', () => {
                     name: 'city',
                     label: 'Search By City',
                     placeholder: 'Los Angeles...',
+                    value: 'Seattle',
                 },
                 button: {
                     text: 'Search Listings',
                 },
             },
-            listings: [
+            listingResults: [
                 {
                     images: ['http://fake-domain.com/image.png'],
                     city: 'Seattle',
@@ -180,6 +181,8 @@ describe('Listing View Test Suite', () => {
                     price: '$100.00 / night',
                 },
             ],
+            noResultsText: 'No results for Seattle.',
+            resultCountText: '1 listings found',
         });
     });
 });

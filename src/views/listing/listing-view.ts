@@ -123,13 +123,16 @@ export class ListingView {
                 input: this.textInputFiller.fill(
                     'city',
                     'Search By City',
-                    Optional.of('Los Angeles...')
+                    Optional.of('Los Angeles...'),
+                    Optional.of(city)
                 ),
                 button: this.buttonFiller.fill('Search Listings'),
             })
-            .listings(
+            .listingResults(
                 listings.map((listing) => this.fillSearchListingResult(listing))
             )
+            .resultCountText(`${listings.length} listings found`)
+            .noResultsText(`No results for ${city}.`)
             .build();
     }
 
