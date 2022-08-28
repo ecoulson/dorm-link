@@ -1,13 +1,10 @@
-import React, { useState } from 'react';
-import { Optional } from '../../../../common/optional';
-import { ButtonComponent } from '../../../base/components/button-component';
-import { TextInputComponent } from '../../../base/components/text-input-component';
+import React from 'react';
 import { ListingSearchResultRenderer } from '../renderers/listing-search-result-renderer';
+import { CitySearchBoxComponent } from './city-search-box-component';
 import { SearchListingComponentProps } from './search-listing-component-props';
 
 export function SearchListingComponent({ model }: SearchListingComponentProps) {
     const renderer = model.render();
-    const [city, setCity] = useState(renderer.searchbox.input.value as string);
 
     function renderSearchResults() {
         if (renderer.listingResults.length === 0) {
@@ -42,23 +39,16 @@ export function SearchListingComponent({ model }: SearchListingComponentProps) {
         );
     }
 
-    function handleSearch() {
+    function handleSearch(city: string) {
         model.search(city);
     }
 
     return (
         <>
-            <>
-                <TextInputComponent
-                    value={Optional.of(city)}
-                    renderer={renderer.searchbox.input}
-                    onChange={setCity}
-                />
-                <ButtonComponent
-                    renderer={renderer.searchbox.button}
-                    onClick={Optional.of(handleSearch)}
-                />
-            </>
+            <CitySearchBoxComponent
+                handleSearch={handleSearch}
+                renderer={renderer.searchbox}
+            />
             {renderSearchResults()}
         </>
     );
