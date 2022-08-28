@@ -1,15 +1,12 @@
 import { Module } from 'noose-injection';
-import { Controllers } from '../core/library';
-import {
-    CoreLibraryAnnotaiton,
-    ListingLibraryAnnotation,
-} from './core-library-annotation';
+import { CoreLibraryModule } from './core-library/core-library-module';
+import { HomeViewModule } from './home/home-view-module';
 import { ListingViewModule } from './listing/listing-view-module';
 
 export class ViewModule extends Module {
     configure(): void {
-        this.registerValue(CoreLibraryAnnotaiton, Controllers);
-        this.registerValue(ListingLibraryAnnotation, Controllers.listing);
+        this.registerModule(new CoreLibraryModule());
         this.registerModule(new ListingViewModule());
+        this.registerModule(new HomeViewModule());
     }
 }

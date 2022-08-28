@@ -1,7 +1,20 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { useContext } from 'react';
+import { Views } from '../views';
+import { CommandContext } from '../views/commands/command-context';
+import { HomeComponent } from '../views/home/components/home-component';
+import { HomeProps } from '../views/home/home-props';
+import { HomePropsRetriever } from '../views/home/home-props-retriever';
+import { HomeViewModel } from '../views/home/home-view-model';
 
-const Home: NextPage = () => {
+export async function getServerSideProps() {
+    return new HomePropsRetriever(Views.home).retrieve();
+}
+
+function Home({ renderer }: HomeProps) {
+    const { dispatcher } = useContext(CommandContext);
+
     return (
         <div>
             <Head>
@@ -12,41 +25,9 @@ const Home: NextPage = () => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
-            <main>
-                <h1>Welcome to Dorm Link</h1>
-
-                <p>
-                    Find cheap internship housing by taking over leases of local
-                    college students.
-                </p>
-                <div>
-                    <div>
-                        <label htmlFor="city-search">
-                            Where are you going?
-                        </label>
-                        <input
-                            name="city-search"
-                            placeholder="Seattle..."
-                        ></input>
-                    </div>
-                    <button>Search Listings</button>
-                </div>
-                <div>
-                    <button>Create A Listing</button>
-                </div>
-            </main>
-
-            <footer>
-                <p>
-                    Contact us:{' '}
-                    <a href="mailto:dormlink@gmail.com">
-                        dormlinktech@gmail.com
-                    </a>
-                </p>
-            </footer>
+            <HomeComponent model={new HomeViewModel(renderer, dispatcher)} />
         </div>
     );
-};
+}
 
 export default Home;

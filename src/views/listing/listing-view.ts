@@ -5,7 +5,7 @@ import type { Listing, ListingController } from '../../core';
 import { ButtonRendererFiller } from '../base/fillers/button-renderer-filler';
 import { TextInputRendererFiller } from '../base/fillers/text-input-renderer-filler';
 import { InputType } from '../base/input-type';
-import { ListingLibraryAnnotation } from '../core-library-annotation';
+import { ListingLibraryAnnotation } from '../core-library/core-library-annotation';
 import { FormSectionRenderer } from '../forms/renderer/form-section-renderer';
 import { CreateListingRenderer } from './create-listing/renderers/create-listing-renderer';
 import { ImageInputRenderer } from './create-listing/renderers/image-input-renderer';
