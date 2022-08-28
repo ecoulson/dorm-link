@@ -1,17 +1,18 @@
 import { Builder } from 'builder-pattern';
 import { Injectable } from 'noose-injection';
 import { Optional } from '../../common/optional';
-import type { ListingController } from '../../core';
+import type { Listing, ListingController } from '../../core';
 import { ButtonRendererFiller } from '../base/fillers/button-renderer-filler';
 import { TextInputRendererFiller } from '../base/fillers/text-input-renderer-filler';
 import { InputType } from '../base/input-type';
 import { ListingLibraryAnnotation } from '../core-library-annotation';
 import { FormSectionRenderer } from '../forms/renderer/form-section-renderer';
-import { SubmitFormCommand } from '../forms/submit-form-command';
 import { CreateListingRenderer } from './create-listing/renderers/create-listing-renderer';
 import { ImageInputRenderer } from './create-listing/renderers/image-input-renderer';
 import { ContactMethodInputRender } from './display-listing/renderers/contact-method-input-renderer';
 import { DisplayListingRender } from './display-listing/renderers/display-listing-renderer';
+import { ListingSearchResultRenderer } from './search-listing/renderers/listing-search-result-renderer';
+import { SearchListingRenderer } from './search-listing/renderers/search-listing-renderer';
 
 @Injectable()
 export class ListingView {
@@ -113,5 +114,33 @@ export class ListingView {
                 } as ContactMethodInputRender,
             ])
             .build();
+    }
+
+    async buildSearchListingView(city: string): Promise<SearchListingRenderer> {
+        const listings = await this.listingController.search({ city });
+        return Builder<SearchListingRenderer>()
+            .searchbox({
+                input: this.textInputFiller.fill(
+                    'city',
+                    'Search By City',
+                    Optional.of('Los Angeles...')
+                ),
+                button: this.buttonFiller.fill('Search Listings'),
+            })
+            .listings(
+                listings.map((listing) => this.fillSearchListingResult(listing))
+            )
+            .build();
+    }
+
+    private fillSearchListingResult(
+        listing: Listing
+    ): ListingSearchResultRenderer {
+        return {
+            images: listing.images,
+            city: listing.city,
+            price: `$${(listing.price / 100).toFixed(2)} / night`,
+            school: listing.contactInformation.school,
+        };
     }
 }

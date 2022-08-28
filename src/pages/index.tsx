@@ -30,7 +30,7 @@ const Home: NextPage = () => {
                             placeholder="Seattle..."
                         ></input>
                     </div>
-                    <button>Browse Listings</button>
+                    <button>Search Listings</button>
                 </div>
                 <div>
                     <button>Create A Listing</button>

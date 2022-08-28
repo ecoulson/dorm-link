@@ -12,6 +12,7 @@ import { CreateListingRenderer } from './create-listing/renderers/create-listing
 import { ImageInputRenderer } from './create-listing/renderers/image-input-renderer';
 import { ContactMethodInputRender } from './display-listing/renderers/contact-method-input-renderer';
 import { ListingView } from './listing-view';
+import { SearchListingRenderer } from './search-listing/renderers/search-listing-renderer';
 
 describe('Listing View Test Suite', () => {
     const mockedController = mock<ListingController>();
@@ -25,7 +26,7 @@ describe('Listing View Test Suite', () => {
         const id = randomUUID();
         when(mockedController.getById(anything())).thenResolve(
             new Listing(
-                randomUUID(),
+                id,
                 new ContactInformation(
                     randomUUID(),
                     'Evan Coulson',
@@ -138,6 +139,47 @@ describe('Listing View Test Suite', () => {
                     text: 'Create Listing',
                 },
             },
+        });
+    });
+
+    test('Should build the search listing view', async () => {
+        when(mockedController.search(anything())).thenResolve([
+            new Listing(
+                randomUUID(),
+                new ContactInformation(
+                    randomUUID(),
+                    'Evan Coulson',
+                    'Harvey Mudd College',
+                    [new EmailContactMethod(randomUUID(), 'ecoulson@hmc.edu')]
+                ),
+                'Seattle',
+                ['http://fake-domain.com/image.png'],
+                10000
+            ),
+        ]);
+
+        const renderer = await view.buildSearchListingView('Seattle');
+
+        expect(renderer).toEqual<SearchListingRenderer>({
+            searchbox: {
+                input: {
+                    type: InputType.TEXT,
+                    name: 'city',
+                    label: 'Search By City',
+                    placeholder: 'Los Angeles...',
+                },
+                button: {
+                    text: 'Search Listings',
+                },
+            },
+            listings: [
+                {
+                    images: ['http://fake-domain.com/image.png'],
+                    city: 'Seattle',
+                    school: 'Harvey Mudd College',
+                    price: '$100.00 / night',
+                },
+            ],
         });
     });
 });
