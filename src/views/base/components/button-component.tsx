@@ -7,7 +7,8 @@ export function ButtonComponent({ renderer, onClick }: ButtonComponentProps) {
     function handleClick() {
         if (renderer.command) {
             dispatcher.dispatch(renderer.command);
-        } else if (onClick.isPresent()) {
+        }
+        if (onClick.isPresent()) {
             const handler = onClick.get();
             handler();
         }

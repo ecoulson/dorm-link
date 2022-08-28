@@ -1,5 +1,5 @@
+import { CommandType } from '../../core';
 import { CommandHandler } from './command-handler';
-import { CommandType } from './command-type';
 
 export class CommandRegistry {
     private static registry: Map<CommandType, CommandHandler> = new Map();

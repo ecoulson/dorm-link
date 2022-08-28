@@ -1,7 +1,21 @@
+import { FormData } from './form-data';
+
 export class FormStorage {
-    addForm(name: string, data: FormData) {}
+    private readonly storage: Record<string, FormData>;
 
-    getForm<T extends FormData>(name: string): T {}
+    constructor() {
+        this.storage = {};
+    }
 
-    updateForm(name: string, data: FormData) {}
+    addForm(name: string, data: FormData) {
+        this.storage[name] = data;
+    }
+
+    getForm<T extends FormData>(name: string): T {
+        return this.storage[name] as T;
+    }
+
+    updateForm(name: string, data: FormData) {
+        this.storage[name] = data;
+    }
 }

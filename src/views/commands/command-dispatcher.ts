@@ -1,5 +1,4 @@
-import { EventEmitter } from '../events/event-emitter';
-import { Command } from './command';
+import { Command, EventEmitter } from '../../core';
 import { CommandEvent } from './command-event';
 
 export class CommandDispatcher {

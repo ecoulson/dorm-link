@@ -4,7 +4,7 @@ import { ContactMethodFormData } from './contact-method-form-data';
 export interface CreateListingFormData extends FormData {
     listing: {
         city: string;
-        price: number;
+        price: string;
         images: string[];
     };
     contactInformation: {
