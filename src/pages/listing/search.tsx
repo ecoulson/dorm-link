@@ -1,6 +1,8 @@
 import { NextPageContext } from 'next';
 import Head from 'next/head';
+import { useContext } from 'react';
 import { Views } from '../../views';
+import { CommandContext } from '../../views/commands/command-context';
 import { SearchListingComponent } from '../../views/listing/search-listing/components/search-listing-component';
 import { SearchListingProps } from '../../views/listing/search-listing/search-listing-props';
 import { SearchListingPropsRetriever } from '../../views/listing/search-listing/search-listing-props-retriever';
@@ -11,6 +13,7 @@ export async function getServerSideProps(context: NextPageContext) {
 }
 
 export const CreateListingPage = ({ renderer }: SearchListingProps) => {
+    const { dispatcher } = useContext(CommandContext);
     return (
         <>
             <Head>
@@ -22,7 +25,7 @@ export const CreateListingPage = ({ renderer }: SearchListingProps) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <SearchListingComponent
-                model={new SearchListingViewModel(renderer)}
+                model={new SearchListingViewModel(renderer, dispatcher)}
             />
         </>
     );
