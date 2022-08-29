@@ -10,7 +10,10 @@ import { RedirectCommandHandler } from '../navigation/redirect-command-handler';
 import Router from 'next/router';
 
 const eventEmitter = new EventEmitter();
-const networkManager = new NetworkManager('http://localhost:3000', axios);
+const networkManager = new NetworkManager(
+    process.env.API_BASE_URL as string,
+    axios
+);
 const dispatcher = new CommandDispatcher(eventEmitter);
 const resolver = new CommandResolver(eventEmitter);
 resolver.setup();
