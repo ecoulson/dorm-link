@@ -1,6 +1,7 @@
 import React from 'react';
 import { Optional } from '../../../common/optional';
 import { ButtonComponent } from '../../base/components/button-component';
+import { TextComponent } from '../../base/components/text-component';
 import { CitySearchBoxComponent } from '../../listing/search-listing/components/city-search-box-component';
 import { HomeComponentProps } from './home-component-props';
 
@@ -31,12 +32,12 @@ export function HomeComponent({ model }: HomeComponentProps) {
                 </div>
             </main>
             <footer>
-                <p>
+                <TextComponent>
                     {renderer.footer.contactUs.text}{' '}
                     <a href={renderer.footer.contactUs.emailLink}>
                         {renderer.footer.contactUs.email}
                     </a>
-                </p>
+                </TextComponent>
             </footer>
         </>
     );

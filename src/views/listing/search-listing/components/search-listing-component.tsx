@@ -1,4 +1,5 @@
 import React from 'react';
+import { TextComponent } from '../../../base/components/text-component';
 import { ListingSearchResultRenderer } from '../renderers/listing-search-result-renderer';
 import { CitySearchBoxComponent } from './city-search-box-component';
 import { SearchListingComponentProps } from './search-listing-component-props';
@@ -8,7 +9,7 @@ export function SearchListingComponent({ model }: SearchListingComponentProps) {
 
     function renderSearchResults() {
         if (renderer.listingResults.length === 0) {
-            return <p>{renderer.noResultsText}</p>;
+            return <TextComponent>{renderer.noResultsText}</TextComponent>;
         } else {
             return renderListings();
         }
@@ -17,7 +18,7 @@ export function SearchListingComponent({ model }: SearchListingComponentProps) {
     function renderListings() {
         return (
             <>
-                <p>{renderer.resultCountText}</p>
+                <TextComponent>{renderer.resultCountText}</TextComponent>
                 {renderer.listingResults.map((listingResult, i) =>
                     renderListingResult(listingResult, i)
                 )}
@@ -31,10 +32,10 @@ export function SearchListingComponent({ model }: SearchListingComponentProps) {
     ) {
         return (
             <div key={i}>
-                <p>{listing.city}</p>
+                <TextComponent>{listing.city}</TextComponent>
                 <img src={listing.images[0]} />
-                <p>{listing.price}</p>
-                <p>{listing.school}</p>
+                <TextComponent>{listing.price}</TextComponent>
+                <TextComponent>{listing.school}</TextComponent>
             </div>
         );
     }
