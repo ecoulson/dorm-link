@@ -1,0 +1,18 @@
+.form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.formSection {
+    padding: 20px;
+}
+
+.formInputSection {
+    display: flex;
+    flex-direction: column;
+}
+
+.formSubmit {
+    display: flex;
+    justify-content: center;
+}

@@ -22,11 +22,6 @@ export function ImageInputComponent({
 
     return (
         <>
-            <>
-                {images.map((src, i) => (
-                    <img key={i} src={src} />
-                ))}
-            </>
             <TextInputComponent
                 value={Optional.of(url)}
                 renderer={renderer.url}
@@ -36,6 +31,11 @@ export function ImageInputComponent({
                 renderer={renderer.addImageButton}
                 onClick={Optional.of(addImage)}
             />
+            <>
+                {images.map((src, i) => (
+                    <img key={i} src={src} />
+                ))}
+            </>
         </>
     );
 }
