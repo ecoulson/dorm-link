@@ -1,6 +1,8 @@
 import React from 'react';
 import { Optional } from '../../../common/optional';
 import { ButtonComponent } from '../../base/components/button-component';
+import { HeadingComponent } from '../../base/components/heading-component';
+import { HeadingSize } from '../../base/components/heading-size';
 import { TextComponent } from '../../base/components/text-component';
 import { CitySearchBoxComponent } from '../../listing/search-listing/components/city-search-box-component';
 import { HomeComponentProps } from './home-component-props';
@@ -10,21 +12,29 @@ export function HomeComponent({ model }: HomeComponentProps) {
     return (
         <>
             <header>
-                <h1>{renderer.header.title}</h1>
+                <HeadingComponent size={HeadingSize.Title}>
+                    {renderer.header.title}
+                </HeadingComponent>
             </header>
             <main>
                 <div>
-                    <h2>{renderer.main.aboutSection.text}</h2>
+                    <HeadingComponent size={HeadingSize.Subtitle}>
+                        {renderer.main.aboutSection.text}
+                    </HeadingComponent>
                 </div>
                 <div>
-                    <h3>{renderer.main.browseListingsSection.description}</h3>
+                    <TextComponent>
+                        {renderer.main.browseListingsSection.description}
+                    </TextComponent>
                     <CitySearchBoxComponent
                         renderer={renderer.main.browseListingsSection.searchbox}
                         handleSearch={(city) => model.search(city)}
                     />
                 </div>
                 <div>
-                    <h3>{renderer.main.createListingSection.description}</h3>
+                    <TextComponent>
+                        {renderer.main.createListingSection.description}
+                    </TextComponent>
                     <ButtonComponent
                         renderer={renderer.main.createListingSection.button}
                         onClick={Optional.empty()}

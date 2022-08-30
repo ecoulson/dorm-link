@@ -1,6 +1,8 @@
 import React from 'react';
 import { Optional } from '../../../../common/optional';
 import { ButtonComponent } from '../../../base/components/button-component';
+import { HeadingComponent } from '../../../base/components/heading-component';
+import { HeadingSize } from '../../../base/components/heading-size';
 import { TextInputComponent } from '../../../base/components/text-input-component';
 import { TextInputRenderer } from '../../../base/renderers/text-input-renderer';
 import { useForm } from '../../../forms/use-form';
@@ -37,7 +39,9 @@ export function CreateListingComponent({ model }: CreateListingComponentProps) {
     return (
         <form name={renderer.form.name} onSubmit={(e) => e.preventDefault()}>
             <div>
-                <h2>{renderer.form.sections[0].header.description}</h2>
+                <HeadingComponent size={HeadingSize.Subtitle}>
+                    {renderer.form.sections[0].header.description}
+                </HeadingComponent>
                 <TextInputComponent
                     value={Optional.of(form.listing.city)}
                     renderer={
@@ -72,7 +76,9 @@ export function CreateListingComponent({ model }: CreateListingComponentProps) {
                 />
             </div>
             <div>
-                <h2>{renderer.form.sections[1].header.description}</h2>
+                <HeadingComponent size={HeadingSize.Subtitle}>
+                    {renderer.form.sections[1].header.description}
+                </HeadingComponent>
                 <TextInputComponent
                     value={Optional.of(form.contactInformation.name)}
                     renderer={
