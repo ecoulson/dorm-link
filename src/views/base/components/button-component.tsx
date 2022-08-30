@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { CommandContext } from '../../commands/command-context';
 import { ButtonComponentProps } from './button-component-props';
+import styles from '../../../styles/base/button.module.css';
 
 export function ButtonComponent({ renderer, onClick }: ButtonComponentProps) {
     const { dispatcher } = useContext(CommandContext);
@@ -14,5 +15,9 @@ export function ButtonComponent({ renderer, onClick }: ButtonComponentProps) {
         }
     }
 
-    return <button onClick={handleClick}>{renderer.text}</button>;
+    return (
+        <button className={styles.button} onClick={handleClick}>
+            {renderer.text}
+        </button>
+    );
 }
