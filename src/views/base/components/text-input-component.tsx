@@ -1,5 +1,7 @@
 import React from 'react';
 import { TextInputComponentProps } from './text-input-component-props';
+import styles from '../../../styles/base/text-input.module.css';
+import { TextComponent } from './text-component';
 
 export function TextInputComponent({
     renderer,
@@ -11,9 +13,12 @@ export function TextInputComponent({
     }
 
     return (
-        <>
-            <label htmlFor={renderer.name}>{renderer.label}</label>
+        <div className={styles.inputContainer}>
+            <label className={styles.label} htmlFor={renderer.name}>
+                <TextComponent>{renderer.label}</TextComponent>
+            </label>
             <input
+                className={styles.input}
                 value={value.getOrDefault('')}
                 name={renderer.name}
                 id={renderer.name}
@@ -21,6 +26,6 @@ export function TextInputComponent({
                 placeholder={renderer.placeholder}
                 onChange={handleChange}
             />
-        </>
+        </div>
     );
 }
