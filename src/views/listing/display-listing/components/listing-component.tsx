@@ -3,20 +3,23 @@ import { HeadingComponent } from '../../../base/components/heading-component';
 import { HeadingSize } from '../../../base/components/heading-size';
 import { TextComponent } from '../../../base/components/text-component';
 import { ListingComponentProps } from './listing-component-props';
+import styles from '../../../../styles/listings/display-listing/display-listing.module.css';
 
 export function ListingComponent(props: ListingComponentProps) {
     const renderer = props.model.render();
     return (
-        <div>
+        <div className={styles.container}>
             <HeadingComponent size={HeadingSize.Title}>
                 {renderer.listing.city}
             </HeadingComponent>
             <HeadingComponent size={HeadingSize.Subtitle}>
                 {renderer.listing.price}
             </HeadingComponent>
-            {renderer.listing.images.map((image) => (
-                <img key={image} src={image} />
-            ))}
+            <div className={styles.imageContainer}>
+                {renderer.listing.images.map((image) => (
+                    <img key={image} src={image} />
+                ))}
+            </div>
             <TextComponent>{renderer.contactInformation.name}</TextComponent>
             <TextComponent>{renderer.contactInformation.school}</TextComponent>
             {renderer.contactInformation.contactMethods.map((method) => (
