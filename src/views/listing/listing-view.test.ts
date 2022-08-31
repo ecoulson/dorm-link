@@ -143,9 +143,10 @@ describe('Listing View Test Suite', () => {
     });
 
     test('Should build the search listing view', async () => {
+        const id = randomUUID();
         when(mockedController.search(anything())).thenResolve([
             new Listing(
-                randomUUID(),
+                id,
                 new ContactInformation(
                     randomUUID(),
                     'Evan Coulson',
@@ -175,6 +176,7 @@ describe('Listing View Test Suite', () => {
             },
             listingResults: [
                 {
+                    id,
                     images: ['http://fake-domain.com/image.png'],
                     city: 'Seattle',
                     school: 'Harvey Mudd College',

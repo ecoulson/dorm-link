@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import { randomUUID } from 'crypto';
 import React from 'react';
 import { anything, capture, instance, mock, reset, verify } from 'ts-mockito';
 import { CommandType } from '../../../../core';
@@ -34,6 +35,7 @@ describe('Search Listing Component Test Suite', () => {
                             },
                             listingResults: [
                                 {
+                                    id: randomUUID(),
                                     images: [
                                         'http://fake-domain.com/image.png',
                                     ],
@@ -134,6 +136,56 @@ describe('Search Listing Component Test Suite', () => {
         expect(command).toEqual({
             type: CommandType.Redirect,
             url: '/listing/search?city=Los%20Angeles',
+        });
+    });
+
+    test('Should redirect to ', () => {
+        const id = randomUUID();
+        render(
+            <SearchListingComponent
+                model={
+                    new SearchListingViewModel(
+                        {
+                            searchbox: {
+                                input: {
+                                    type: InputType.TEXT,
+                                    name: 'city',
+                                    label: 'Search By City',
+                                    placeholder: 'Los Angeles...',
+                                    value: 'Seattle',
+                                },
+                                button: {
+                                    text: 'Search Listings',
+                                },
+                            },
+                            listingResults: [
+                                {
+                                    id,
+                                    images: [
+                                        'http://fake-domain.com/image.png',
+                                    ],
+                                    city: 'Seattle',
+                                    school: 'Harvey Mudd College',
+                                    price: '$100.00 / night',
+                                },
+                            ],
+                            noResultsText: 'No results for this city.',
+                            resultCountText: '1 listings found',
+                        },
+                        instance(mockedDispatcher)
+                    )
+                }
+            />
+        );
+
+        const college = screen.getByText('Harvey Mudd College');
+        fireEvent.click(college);
+
+        verify(mockedDispatcher.dispatch(anything())).once();
+        const [command] = capture(mockedDispatcher.dispatch).last();
+        expect(command).toEqual({
+            type: CommandType.Redirect,
+            url: `/listing/${id}`,
         });
     });
 });

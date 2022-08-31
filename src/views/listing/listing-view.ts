@@ -140,6 +140,7 @@ export class ListingView {
         listing: Listing
     ): ListingSearchResultRenderer {
         return {
+            id: listing.id,
             images: listing.images,
             city: listing.city,
             price: `$${(listing.price / 100).toFixed(2)} / night`,

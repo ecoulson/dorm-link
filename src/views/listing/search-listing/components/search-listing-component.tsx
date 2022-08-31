@@ -24,19 +24,20 @@ export function SearchListingComponent({ model }: SearchListingComponentProps) {
         return (
             <div className={styles.resultsContainer}>
                 <TextComponent>{renderer.resultCountText}</TextComponent>
-                {renderer.listingResults.map((listingResult, i) =>
-                    renderListingResult(listingResult, i)
+                {renderer.listingResults.map((listingResult) =>
+                    renderListingResult(listingResult)
                 )}
             </div>
         );
     }
 
-    function renderListingResult(
-        listing: ListingSearchResultRenderer,
-        i: number
-    ) {
+    function renderListingResult(listing: ListingSearchResultRenderer) {
         return (
-            <div key={i} className={styles.searchResult}>
+            <div
+                onClick={() => model.viewListingSearchResult(listing)}
+                key={listing.id}
+                className={styles.searchResult}
+            >
                 <TextComponent>{listing.city}</TextComponent>
                 <img className={styles.resultImage} src={listing.images[0]} />
                 <TextComponent>{listing.price}</TextComponent>
