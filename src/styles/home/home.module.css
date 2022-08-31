@@ -1,0 +1,52 @@
+.header {
+    display: flex;
+    justify-content: center;
+}
+
+.aboutSection {
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    align-items: center;
+}
+
+.browseListingSection {
+    height: 400px;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.browseListingInputContainer {
+    width: 50%;
+    min-width: 350px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.createListingSection {
+    height: 400px;
+    background-color: salmon;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.createListingActionContainer {
+    width: 50%;
+    min-width: 350px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer {
+    background-color: black;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
