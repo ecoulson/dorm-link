@@ -1,0 +1,28 @@
+.noResultsContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.resultsContainer {
+    display: flex;
+    max-width: 800px;
+    flex-direction: column;
+    margin: 0 auto;
+    gap: 10px;
+}
+
+.searchResult {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.searchResult {
+    cursor: pointer;
+}
+
+.resultImage {
+    height: 200px;
+}

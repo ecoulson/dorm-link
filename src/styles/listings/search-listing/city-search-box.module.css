@@ -1,0 +1,11 @@
+.searchBoxContainer {
+    margin: 0 auto;
+    display: flex;
+    padding: 10px 5%;
+    align-items: center;
+}
+
+.buttonContainer {
+    width: 200px;
+    padding: 0px 10px;
+}
