@@ -17,7 +17,7 @@ export function ListingComponent(props: ListingComponentProps) {
             </HeadingComponent>
             <div className={styles.imageContainer}>
                 {renderer.listing.images.map((image) => (
-                    <img key={image} src={image} />
+                    <img className={styles.image} key={image} src={image} />
                 ))}
             </div>
             <TextComponent>{renderer.contactInformation.name}</TextComponent>
