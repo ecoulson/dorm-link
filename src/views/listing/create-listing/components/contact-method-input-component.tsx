@@ -7,6 +7,7 @@ import { v4 as uuid } from 'uuid';
 import { ContactMethodInputComponentProps } from './contact-method-input-component-props';
 import { ContactMethodTextInputComponentState } from './contact-method-text-input-component-state';
 import { TextInputRenderer } from '../../../base/renderers/text-input-renderer';
+import styles from '../../../../styles/listings/create-listing/contact-method-input.module.css';
 
 export function ContactMethodInputComponent({
     renderer,
@@ -56,7 +57,7 @@ export function ContactMethodInputComponent({
     }
 
     return (
-        <>
+        <div>
             <div>
                 {inputStates.map((state) => (
                     <TextInputComponent
@@ -67,7 +68,7 @@ export function ContactMethodInputComponent({
                     />
                 ))}
             </div>
-            <div>
+            <div className={styles.contactMethodButtonContainer}>
                 <ButtonComponent
                     renderer={renderer.addEmailButton}
                     onClick={Optional.of(
@@ -81,6 +82,6 @@ export function ContactMethodInputComponent({
                     )}
                 />
             </div>
-        </>
+        </div>
     );
 }
