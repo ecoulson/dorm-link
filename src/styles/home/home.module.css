@@ -29,7 +29,7 @@
 
 .createListingSection {
     height: 400px;
-    background-color: salmon;
+    background-color: #db9d47;
     display: flex;
     justify-content: center;
     align-items: center;
