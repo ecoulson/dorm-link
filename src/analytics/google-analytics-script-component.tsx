@@ -5,10 +5,10 @@ export function GoogleAnalyticsScriptComponent() {
     return (
         <>
             <Script
-                async
+                strategy="afterInteractive"
                 src="https://www.googletagmanager.com/gtag/js?id=G-EDELSGZ3VC"
             ></Script>
-            <Script>
+            <Script id="google-analytics" strategy="afterInteractive">
                 {`
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
