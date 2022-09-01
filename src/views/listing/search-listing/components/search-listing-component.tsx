@@ -38,10 +38,17 @@ export function SearchListingComponent({ model }: SearchListingComponentProps) {
                 key={listing.id}
                 className={styles.searchResult}
             >
-                <TextComponent>{listing.city}</TextComponent>
-                <img className={styles.resultImage} src={listing.images[0]} />
-                <TextComponent>{listing.price}</TextComponent>
-                <TextComponent>{listing.school}</TextComponent>
+                <div>
+                    <img
+                        className={styles.resultImage}
+                        src={listing.images[0]}
+                    />
+                </div>
+                <div className={styles.searchResultInformationContainer}>
+                    <TextComponent>{listing.city}</TextComponent>
+                    <TextComponent>{listing.price}</TextComponent>
+                    <TextComponent>{listing.school}</TextComponent>
+                </div>
             </div>
         );
     }
@@ -51,7 +58,7 @@ export function SearchListingComponent({ model }: SearchListingComponentProps) {
     }
 
     return (
-        <>
+        <div className={styles.container}>
             <CitySearchBoxComponent
                 handleSearch={handleSearch}
                 renderer={renderer.searchbox}
@@ -59,6 +66,6 @@ export function SearchListingComponent({ model }: SearchListingComponentProps) {
             <div className={styles.searchResultsContainer}>
                 {renderSearchResults()}
             </div>
-        </>
+        </div>
     );
 }
