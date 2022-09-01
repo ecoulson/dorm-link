@@ -4,7 +4,7 @@ import {
     CommandContext,
     DefaultCommandContext,
 } from '../views/commands/command-context';
-import { GoogleAnalyticsScriptComponent } from '../analytics/google-analytics-script-component';
+import { GoogleAnalyticsScriptComponent } from '../views/analytics/google-analytics-script-component';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
