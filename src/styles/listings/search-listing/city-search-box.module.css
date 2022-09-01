@@ -3,6 +3,7 @@
     display: flex;
     padding: 10px 5%;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .buttonContainer {
