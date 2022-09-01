@@ -14,7 +14,10 @@ export function GoogleAnalyticsScriptComponent() {
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-EDELSGZ3VC');
+
+  gtag('config', 'G-EDELSGZ3VC', { debug: ${
+      process.env.NODE_ENV !== 'production'
+  } });
     `}
             </Script>
         </>
