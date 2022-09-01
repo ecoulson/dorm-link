@@ -3,6 +3,13 @@
     display: flex;
     padding: 10px 5%;
     align-items: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (min-width: 1000px) {
+    .searchBoxContainer {
+        flex-wrap: nowrap;
+    }
 }
 
 .buttonContainer {
