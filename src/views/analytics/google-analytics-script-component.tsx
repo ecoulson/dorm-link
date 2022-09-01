@@ -10,15 +10,13 @@ export function GoogleAnalyticsScriptComponent() {
             ></Script>
             <Script id="google-analytics" strategy="afterInteractive">
                 {`
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-
-  gtag('config', 'G-EDELSGZ3VC', { debug: ${
-      process.env.NODE_ENV !== 'production'
-  } });
-    `}
+                if (window.location.hostname.search("dorm-link.vercel.app") !== -1) {
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', 'G-EDELSGZ3VC');
+                } 
+                `}
             </Script>
         </>
     );
