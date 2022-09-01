@@ -1,8 +1,7 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
 import { useContext } from 'react';
 import { Views } from '../views';
 import { CommandContext } from '../views/commands/command-context';
+import { HeadComponent } from '../views/head/head-component';
 import { HomeComponent } from '../views/home/components/home-component';
 import { HomeProps } from '../views/home/home-props';
 import { HomePropsRetriever } from '../views/home/home-props-retriever';
@@ -17,14 +16,7 @@ function Home({ renderer }: HomeProps) {
 
     return (
         <div>
-            <Head>
-                <title>Dorm Link</title>
-                <meta
-                    name="description"
-                    content="Find cheap summer internship housing here."
-                />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <HeadComponent />
             <HomeComponent model={new HomeViewModel(renderer, dispatcher)} />
         </div>
     );

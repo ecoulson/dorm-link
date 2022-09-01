@@ -1,6 +1,6 @@
 import type { NextPageContext } from 'next';
-import Head from 'next/head';
 import { Views } from '../../views';
+import { HeadComponent } from '../../views/head/head-component';
 import { ListingComponent } from '../../views/listing/display-listing/components/listing-component';
 import { DisplayListingPageProps } from '../../views/listing/display-listing/display-listing-props';
 import { DisplayListingPropsRetriever } from '../../views/listing/display-listing/display-listing-props-retriever';
@@ -13,14 +13,7 @@ export async function getServerSideProps(context: NextPageContext) {
 export const ListingPage = ({ renderer }: DisplayListingPageProps) => {
     return (
         <>
-            <Head>
-                <title>Dorm Link</title>
-                <meta
-                    name="description"
-                    content="Find cheap summer internship housing here."
-                />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <HeadComponent />
             <ListingComponent model={new ListingViewModel(renderer)} />
         </>
     );
