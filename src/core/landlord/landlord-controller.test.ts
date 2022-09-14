@@ -9,7 +9,11 @@ describe('Landlord Controller Test Suite', () => {
     const controller = new LandlordController(instance(mockedService));
 
     test('Should forward the landlord invitation request to the service', async () => {
-        const expectedLandlord = new Landlord();
+        const expectedLandlord = new Landlord(
+            'ecoulson@hmc.edu',
+            'Evan',
+            'Coulson'
+        );
         when(mockedService.invite(anyString(), anything())).thenResolve(
             expectedLandlord
         );
