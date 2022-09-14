@@ -49,3 +49,9 @@ model ListingApproval {
   listing       Listing @relation(fields: [listingId], references: [id])
   listingId     String @unique
 }
+
+model Landlord {
+  email         String @id
+  firstName     String
+  lastName      String
+}

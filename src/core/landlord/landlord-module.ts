@@ -10,6 +10,7 @@ import { LandlordService } from './landlord-service';
 
 export class LandlordModule extends Module {
     configure(): void {
+        this.registerValue
         this.registerClass(LandlordControllerAnnotation, LandlordController);
         this.registerClass(LandlordServiceAnnotation, LandlordService);
         this.registerClass(LandlordBrokerAnnotation, LandlordBroker);
