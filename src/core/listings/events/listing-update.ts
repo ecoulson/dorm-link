@@ -1,3 +1,4 @@
+import { DeepPartial } from '../../../common/deep-partial';
 import { Listing } from '../models/listing';
 
-export type ListingUpdate = Partial<Listing> & { id: string };
+export type ListingUpdate = DeepPartial<Listing> & { id: string };

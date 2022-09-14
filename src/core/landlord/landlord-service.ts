@@ -6,11 +6,14 @@ import { EventEmitter } from '../events/event-emitter';
 import { EmailNotification } from '../notifications/email-notification';
 import { NotificationEvent } from '../notifications/notification-event';
 import { Landlord } from './models/landlord';
-import { LandlordAction } from './models/landlord-action';
 import { LandlordBrokerAnnotation } from './landlord-annotations';
 import { LandlordBroker } from './landlord-broker';
 import { LandlordApprovalActionRequest } from './requests/landlord-approval-action-request';
 import { LandlordParameters } from './requests/landlord-parameters';
+import { RedirectCommand } from '../navigation/redirect-command';
+import { ToastCommand } from '../alerts/toast-command';
+import { Toast } from '../alerts/toast';
+import { ToastType } from '../alerts/toast-type';
 
 @Injectable()
 export class LandlordService {
@@ -26,7 +29,7 @@ export class LandlordService {
     async invite(
         listingId: string,
         landlordParameters: LandlordParameters
-    ): Promise<Landlord> {
+    ): Promise<ToastCommand> {
         const landlord = await this.broker.insert(
             new Landlord(
                 landlordParameters.email,
@@ -46,14 +49,20 @@ export class LandlordService {
                 )
             )
         );
-        return landlord;
+        return new ToastCommand(
+            new Toast(
+                ToastType.Success,
+                `Sent invite to ${landlord.email}`,
+                3000
+            )
+        );
     }
 
-    accept(request: LandlordApprovalActionRequest): Promise<LandlordAction> {
+    accept(request: LandlordApprovalActionRequest): Promise<RedirectCommand> {
         throw new Error();
     }
 
-    decline(request: LandlordApprovalActionRequest): Promise<LandlordAction> {
+    decline(request: LandlordApprovalActionRequest): Promise<ToastCommand> {
         throw new Error();
     }
 }
