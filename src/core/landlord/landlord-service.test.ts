@@ -13,11 +13,14 @@ import { ToastCommand } from '../alerts/toast-command';
 import { ToastType } from '../alerts/toast-type';
 import { Environment } from '../environment/environment';
 import { EventEmitter } from '../events/event-emitter';
+import { ApproveListingEvent } from './events/approve-listing-event';
+import { RedirectCommand } from '../navigation/redirect-command';
 import { EmailNotification } from '../notifications/email-notification';
 import { NotificationEvent } from '../notifications/notification-event';
 import { LandlordBroker } from './landlord-broker';
 import { LandlordService } from './landlord-service';
 import { Landlord } from './models/landlord';
+import { DeclineListingEvent } from './events/decline-listing-event';
 
 describe('Landlord Service Test Suite', () => {
     const mockedEventEmitter = mock(EventEmitter);
@@ -68,5 +71,43 @@ describe('Landlord Service Test Suite', () => {
         verify(mockedEventEmitter.fire(anything())).once();
         const [event] = capture(mockedEventEmitter.fire).last();
         expect(event).toEqual(expectedNotification);
+    });
+
+    test('Should approve the listing', async () => {
+        const listingId = randomUUID();
+        const landlordId = randomUUID();
+        const expectedRedirectCommand = new RedirectCommand(
+            `/listing/${listingId}`
+        );
+
+        const redirectCommand = await service.accept(listingId, landlordId);
+
+        expect(redirectCommand).toEqual(expectedRedirectCommand);
+        verify(mockedEventEmitter.fire(anything())).once();
+        const [approvalEvent] = capture(mockedEventEmitter.fire).last();
+        expect(approvalEvent).toEqual(
+            new ApproveListingEvent(listingId, landlordId)
+        );
+    });
+
+    test('Should decline the listing', async () => {
+        const listingId = randomUUID();
+        const landlordId = randomUUID();
+        const expectedToastCommand = new ToastCommand(
+            new Toast(
+                ToastType.Success,
+                'Request for subletting has been declined',
+                3000
+            )
+        );
+
+        const toastCommand = await service.decline(listingId, landlordId);
+
+        expect(toastCommand).toEqual(expectedToastCommand);
+        verify(mockedEventEmitter.fire(anything())).once();
+        const [approvalEvent] = capture(mockedEventEmitter.fire).last();
+        expect(approvalEvent).toEqual(
+            new DeclineListingEvent(listingId, landlordId)
+        );
     });
 });

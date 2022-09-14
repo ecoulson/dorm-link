@@ -36,7 +36,9 @@ describe('Landlord Controller Test Suite', () => {
     test('Should accept the invitation', async () => {
         const listingId = randomUUID();
         const expectedRedirect = new RedirectCommand(`/listing/${listingId}`);
-        when(mockedService.accept(anything())).thenResolve(expectedRedirect);
+        when(mockedService.accept(anyString(), anyString())).thenResolve(
+            expectedRedirect
+        );
 
         const actualRedirect = await controller.accept({
             landlordId: randomUUID(),
@@ -44,14 +46,16 @@ describe('Landlord Controller Test Suite', () => {
         });
 
         expect(actualRedirect).toEqual(expectedRedirect);
-        verify(mockedService.accept(anything())).once();
+        verify(mockedService.accept(anyString(), anyString())).once();
     });
 
     test('Should decline the invitation', async () => {
         const expectedToast = new ToastCommand(
             new Toast(ToastType.Error, 'Toast', 100)
         );
-        when(mockedService.decline(anything())).thenResolve(expectedToast);
+        when(mockedService.decline(anyString(), anyString())).thenResolve(
+            expectedToast
+        );
 
         const actualToast = await controller.decline({
             landlordId: randomUUID(),
@@ -59,6 +63,6 @@ describe('Landlord Controller Test Suite', () => {
         });
 
         expect(actualToast).toEqual(expectedToast);
-        verify(mockedService.decline(anything())).once();
+        verify(mockedService.decline(anyString(), anyString())).once();
     });
 });

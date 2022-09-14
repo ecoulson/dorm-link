@@ -14,6 +14,8 @@ import { RedirectCommand } from '../navigation/redirect-command';
 import { ToastCommand } from '../alerts/toast-command';
 import { Toast } from '../alerts/toast';
 import { ToastType } from '../alerts/toast-type';
+import { ApproveListingEvent } from './events/approve-listing-event';
+import { DeclineListingEvent } from './events/decline-listing-event';
 
 @Injectable()
 export class LandlordService {
@@ -58,11 +60,25 @@ export class LandlordService {
         );
     }
 
-    accept(request: LandlordApprovalActionRequest): Promise<RedirectCommand> {
-        throw new Error();
+    async accept(
+        listingId: string,
+        landlordId: string
+    ): Promise<RedirectCommand> {
+        this.eventEmitter.fire(new ApproveListingEvent(listingId, landlordId));
+        return new RedirectCommand(`/listing/${listingId}`);
     }
 
-    decline(request: LandlordApprovalActionRequest): Promise<ToastCommand> {
-        throw new Error();
+    async decline(
+        listingId: string,
+        landlordId: string
+    ): Promise<ToastCommand> {
+        this.eventEmitter.fire(new DeclineListingEvent(listingId, landlordId));
+        return new ToastCommand(
+            new Toast(
+                ToastType.Success,
+                'Request for subletting has been declined',
+                3000
+            )
+        );
     }
 }

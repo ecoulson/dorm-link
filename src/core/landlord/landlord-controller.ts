@@ -19,10 +19,10 @@ export class LandlordController {
     }
 
     accept(request: LandlordApprovalActionRequest): Promise<RedirectCommand> {
-        return this.service.accept(request);
+        return this.service.accept(request.listingId, request.landlordId);
     }
 
     decline(request: LandlordApprovalActionRequest): Promise<ToastCommand> {
-        return this.service.decline(request);
+        return this.service.decline(request.listingId, request.landlordId);
     }
 }

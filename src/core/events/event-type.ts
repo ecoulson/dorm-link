@@ -2,7 +2,8 @@ enum EventType {
     Command = 'Command',
     Notification = 'Notification',
     ListingCreated = 'ListingCreated',
-    UpdateListing = 'UpdateListing',
+    ListingApproved = 'ListingApproved',
+    ListingDeclined = 'ListingDeclined',
 }
 
 export { EventType };
