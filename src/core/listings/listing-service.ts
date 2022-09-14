@@ -11,6 +11,7 @@ import { PhoneContactMethod } from './contact-information/phone-contact-method';
 import { CreateListingParameters } from './create-listing-parameters';
 import { Listing } from './listing';
 import { ListingBrokerAnnotation } from './listing-annotations';
+import { ListingApproval } from './listing-approval';
 import { ListingBroker } from './listing-broker';
 
 @Injectable()
@@ -32,7 +33,8 @@ export class ListingService {
                 this.createContactInfo(contactInfoParameters),
                 listingParameters.city,
                 listingParameters.images,
-                listingParameters.price
+                listingParameters.price,
+                new ListingApproval(this.uuidGenerator.generate(), false)
             )
         );
         return new RedirectCommand(`/listing/${status.value().id}`);

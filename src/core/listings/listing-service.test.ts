@@ -15,6 +15,7 @@ import { ContactInformation } from './contact-information/contact-information';
 import { ContactMethodType } from './contact-information/contact-method-type';
 import { EmailContactMethod } from './contact-information/email-contact-method';
 import { Listing } from './listing';
+import { ListingApproval } from './listing-approval';
 import { ListingBroker } from './listing-broker';
 import { ListingService } from './listing-service';
 
@@ -40,7 +41,8 @@ describe('Listing Service Test Suite', () => {
             ]),
             'Los Angeles',
             [],
-            10000
+            10000,
+            new ListingApproval(id, false)
         );
         const expectedRedirectCommand = new RedirectCommand(
             `/listing/${expectedListing.id}`
@@ -70,7 +72,7 @@ describe('Listing Service Test Suite', () => {
 
         expect(redirectCommand).toEqual(expectedRedirectCommand);
         verify(mockedBroker.insert(anyOfClass(Listing))).once();
-        verify(mockedUUIDGenerator.generate()).thrice();
+        verify(mockedUUIDGenerator.generate()).times(4);
         const [listing] = capture(mockedBroker.insert).last();
         expect(listing).toEqual(expectedListing);
     });
@@ -87,7 +89,8 @@ describe('Listing Service Test Suite', () => {
             ),
             'Los Angeles',
             [],
-            10000
+            10000,
+            new ListingApproval(randomUUID(), false)
         );
         when(mockedBroker.selectById(id)).thenResolve(
             Status.ok(expectedListing)
@@ -112,7 +115,8 @@ describe('Listing Service Test Suite', () => {
                 ),
                 'Los Angeles',
                 [],
-                10000
+                10000,
+                new ListingApproval(randomUUID(), false)
             ),
         ];
         when(mockedBroker.selectAllByCity('Los Angeles')).thenResolve(

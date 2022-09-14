@@ -11,6 +11,7 @@ import {
 import { RedirectCommand } from '../navigation/redirect-command';
 import { ContactInformation } from './contact-information/contact-information';
 import { Listing } from './listing';
+import { ListingApproval } from './listing-approval';
 import { ListingController } from './listing-controller';
 import { ListingService } from './listing-service';
 
@@ -59,7 +60,8 @@ describe('Listing Controller Test Suite', () => {
             ),
             'Los Angeles',
             [],
-            1000
+            1000,
+            new ListingApproval(randomUUID(), false)
         );
         when(mockedListingService.getById(anyString())).thenResolve(
             expectedListing
@@ -84,7 +86,8 @@ describe('Listing Controller Test Suite', () => {
                 ),
                 'Los Angeles',
                 [],
-                1000
+                1000,
+                new ListingApproval(randomUUID(), false)
             ),
         ];
         when(mockedListingService.search(anyString())).thenResolve(

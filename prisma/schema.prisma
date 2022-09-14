@@ -16,6 +16,7 @@ model Listing {
   price               Int
   city                String
   contactInformation  ContactInformation?
+  approval            ListingApproval?
 }
 
 model ContactInformation {
@@ -40,3 +41,11 @@ enum ContactMethodType {
   PHONE
 }
 
+model ListingApproval {
+  id            String @id @default(uuid())
+  approved      Boolean
+  approverId    String
+  approvedAt    DateTime
+  listing       Listing @relation(fields: [listingId], references: [id])
+  listingId     String @unique
+}

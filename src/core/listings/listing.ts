@@ -1,4 +1,5 @@
 import { ContactInformation } from './contact-information/contact-information';
+import { ListingApproval } from './listing-approval';
 
 export class Listing {
     constructor(
@@ -6,6 +7,7 @@ export class Listing {
         public readonly contactInformation: ContactInformation,
         public readonly city: string,
         public readonly images: string[],
-        public readonly price: number
+        public readonly price: number,
+        public readonly approval: ListingApproval
     ) {}
 }

@@ -6,6 +6,7 @@ import {
     Listing,
     ListingController,
 } from '../../core';
+import { ListingApproval } from '../../core/listings/listing-approval';
 import { InputType } from '../base/input-type';
 import { TextInputRenderer } from '../base/renderers/text-input-renderer';
 import { CreateListingRenderer } from './create-listing/renderers/create-listing-renderer';
@@ -35,7 +36,8 @@ describe('Listing View Test Suite', () => {
                 ),
                 'Los Angeles',
                 ['http://fake-domain.com/image.jpg'],
-                10000
+                10000,
+                new ListingApproval(randomUUID(), false)
             )
         );
 
@@ -155,7 +157,8 @@ describe('Listing View Test Suite', () => {
                 ),
                 'Seattle',
                 ['http://fake-domain.com/image.png'],
-                10000
+                10000,
+                new ListingApproval(randomUUID(), false)
             ),
         ]);
 

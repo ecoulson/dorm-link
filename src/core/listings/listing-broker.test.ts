@@ -3,6 +3,7 @@ import { randomUUID } from 'crypto';
 import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
 import { ContactInformation } from './contact-information/contact-information';
 import { Listing } from './listing';
+import { ListingApproval } from './listing-approval';
 import { ListingBroker } from './listing-broker';
 
 describe('Listing Broker Test Suite', () => {
@@ -24,7 +25,8 @@ describe('Listing Broker Test Suite', () => {
             ),
             'Los Angeles',
             [],
-            1000
+            1000,
+            new ListingApproval(randomUUID(), false)
         );
         const expectedListing = inputListing;
         when(mockedPrismaClient.create(anything())).thenResolve(
@@ -48,7 +50,8 @@ describe('Listing Broker Test Suite', () => {
             ),
             'Los Angeles',
             [],
-            1000
+            1000,
+            new ListingApproval(randomUUID(), false)
         );
         when(mockedPrismaClient.findFirst(anything())).thenResolve(
             expectedListing
@@ -72,7 +75,8 @@ describe('Listing Broker Test Suite', () => {
                 ),
                 'Los Angeles',
                 [],
-                1000
+                1000,
+                new ListingApproval(randomUUID(), false)
             ),
         ];
         when(mockedPrismaClient.findMany(anything())).thenResolve(

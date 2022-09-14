@@ -6,12 +6,14 @@ import {
     Listing as ListingModel,
     ContactInformation as ContactInformationModel,
     ContactMethod as ContactMethodModel,
+    ListingApproval as ListingApprovalModel,
 } from '@prisma/client';
 import { ContactInformation } from './contact-information/contact-information';
 import { EmailContactMethod } from './contact-information/email-contact-method';
 import { PhoneContactMethod } from './contact-information/phone-contact-method';
 import { Injectable } from 'noose-injection';
 import { ListingClientAnnotation } from '../core-annotations';
+import { ListingApproval } from './listing-approval';
 
 @Injectable()
 export class ListingBroker {
@@ -52,6 +54,7 @@ export class ListingBroker {
                         contactMethods: true,
                     },
                 },
+                approval: true,
             },
         });
         return Status.ok(this.createListingFromQueryResult(result));
@@ -64,6 +67,7 @@ export class ListingBroker {
                       contactMethods: ContactMethodModel[];
                   })
                 | null;
+            approval: ListingApprovalModel | null;
         }
     ): Listing {
         return new Listing(
@@ -90,7 +94,13 @@ export class ListingBroker {
             ),
             result.city,
             result.images,
-            result.price
+            result.price,
+            new ListingApproval(
+                result.approval!.id,
+                result.approval!.approved,
+                result.approval?.approverId,
+                result.approval?.approvedAt
+            )
         );
     }
 
@@ -105,6 +115,7 @@ export class ListingBroker {
                         contactMethods: true,
                     },
                 },
+                approval: true,
             },
         });
         return Status.ok(this.createListingFromQueryResult(result!));
@@ -121,6 +132,7 @@ export class ListingBroker {
                         contactMethods: true,
                     },
                 },
+                approval: true,
             },
         });
         return Status.ok(
