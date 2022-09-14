@@ -1,11 +1,11 @@
-import { Listing } from './models/listing';
-import { CreateListingRequest } from './requests/create-listing-request';
-import { ListingService } from './listing-service';
-import { SearchListingsRequest } from './requests/search-listings-request';
-import { GetListingRequest } from './requests/get-listing-request';
+import { Listing } from '../models/listing';
+import { CreateListingRequest } from '../requests/create-listing-request';
+import { ListingService } from '../services/listing-service';
+import { SearchListingsRequest } from '../requests/search-listings-request';
+import { GetListingRequest } from '../requests/get-listing-request';
 import { Injectable } from 'noose-injection';
-import { ListingServiceAnnotation } from './listing-annotations';
-import { RedirectCommand } from '../navigation/redirect-command';
+import { ListingServiceAnnotation } from '../listing-annotations';
+import { RedirectCommand } from '../../navigation/redirect-command';
 
 @Injectable()
 export class ListingController {

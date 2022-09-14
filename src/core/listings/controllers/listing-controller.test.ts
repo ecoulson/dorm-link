@@ -8,12 +8,12 @@ import {
     verify,
     when,
 } from 'ts-mockito';
-import { RedirectCommand } from '../navigation/redirect-command';
-import { ContactInformation } from './contact-information/contact-information';
-import { Listing } from './models/listing';
-import { ListingApproval } from './models/listing-approval';
+import { RedirectCommand } from '../../navigation/redirect-command';
+import { ContactInformation } from '../contact-information/contact-information';
+import { Listing } from '../models/listing';
+import { ListingApproval } from '../models/listing-approval';
 import { ListingController } from './listing-controller';
-import { ListingService } from './listing-service';
+import { ListingService } from '../services/listing-service';
 
 describe('Listing Controller Test Suite', () => {
     const mockedListingService = mock(ListingService);

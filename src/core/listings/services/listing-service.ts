@@ -1,18 +1,18 @@
 import { Injectable } from 'noose-injection';
-import { UUIDGeneratorAnnotation } from '../identifiers/identifier-annotations';
-import { UUIDGenerator } from '../identifiers/uuid-generator';
-import { RedirectCommand } from '../navigation/redirect-command';
-import { ContactInformation } from './contact-information/contact-information';
-import { ContactMethodType } from './contact-information/contact-method-type';
-import { CreateContactInfoParameters } from './contact-information/create-contact-info-parameters';
-import { CreateContactMethodParameters } from './contact-information/create-contact-method-parameters';
-import { EmailContactMethod } from './contact-information/email-contact-method';
-import { PhoneContactMethod } from './contact-information/phone-contact-method';
-import { CreateListingParameters } from './requests/create-listing-parameters';
-import { Listing } from './models/listing';
-import { ListingBrokerAnnotation } from './listing-annotations';
-import { ListingApproval } from './models/listing-approval';
-import { ListingBroker } from './listing-broker';
+import { UUIDGeneratorAnnotation } from '../../identifiers/identifier-annotations';
+import { UUIDGenerator } from '../../identifiers/uuid-generator';
+import { RedirectCommand } from '../../navigation/redirect-command';
+import { ContactInformation } from '../contact-information/contact-information';
+import { ContactMethodType } from '../contact-information/contact-method-type';
+import { CreateContactInfoParameters } from '../contact-information/create-contact-info-parameters';
+import { CreateContactMethodParameters } from '../contact-information/create-contact-method-parameters';
+import { EmailContactMethod } from '../contact-information/email-contact-method';
+import { PhoneContactMethod } from '../contact-information/phone-contact-method';
+import { CreateListingParameters } from '../requests/create-listing-parameters';
+import { Listing } from '../models/listing';
+import { ListingBrokerAnnotation } from '../listing-annotations';
+import { ListingApproval } from '../models/listing-approval';
+import { ListingBroker } from '../brokers/listing-broker';
 
 @Injectable()
 export class ListingService {

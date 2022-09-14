@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import { Injectable } from 'noose-injection';
 import { RouteHandler } from '../../api/route-handler';
 import { ListingControllerAnnotation } from '../../listings/listing-annotations';
-import { ListingController } from '../../listings/listing-controller';
+import { ListingController } from '../controllers/listing-controller';
 
 @Injectable()
 export class ListingRouteHandler implements RouteHandler {

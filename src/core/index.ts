@@ -1,4 +1,4 @@
-export type { ListingController } from './listings/listing-controller';
+export type { ListingController } from './listings/controllers/listing-controller';
 export { Listing } from './listings/models/listing';
 export { ContactInformation } from './listings/contact-information/contact-information';
 export { EmailContactMethod } from './listings/contact-information/email-contact-method';

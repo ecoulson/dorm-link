@@ -8,7 +8,7 @@ import {
     verify,
     when,
 } from 'ts-mockito';
-import { ListingController } from '../listing-controller';
+import { ListingController } from '../controllers/listing-controller';
 import { ListingRouteHandler } from './listing-route-handler';
 
 describe('Listing Route Handler Test Suite', () => {

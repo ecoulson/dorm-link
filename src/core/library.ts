@@ -6,7 +6,7 @@ import {
     ListingControllerAnnotation,
     ListingRouteHandlerAnnotation,
 } from './listings/listing-annotations';
-import { ListingController } from './listings/listing-controller';
+import { ListingController } from './listings/controllers/listing-controller';
 
 const coreModule = new CoreModule();
 coreModule.configure();

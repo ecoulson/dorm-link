@@ -6,9 +6,9 @@ import {
     ListingRouteHandlerAnnotation,
     ListingServiceAnnotation,
 } from './listing-annotations';
-import { ListingBroker } from './listing-broker';
-import { ListingController } from './listing-controller';
-import { ListingService } from './listing-service';
+import { ListingBroker } from './brokers/listing-broker';
+import { ListingController } from './controllers/listing-controller';
+import { ListingService } from './services/listing-service';
 
 export class ListingModule extends Module {
     configure(): void {

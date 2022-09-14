@@ -1,5 +1,5 @@
-import { Status } from '../../common/status';
-import { Listing } from './models/listing';
+import { Status } from '../../../common/status';
+import { Listing } from '../models/listing';
 import {
     ContactMethodType,
     Prisma,
@@ -8,12 +8,12 @@ import {
     ContactMethod as ContactMethodModel,
     ListingApproval as ListingApprovalModel,
 } from '@prisma/client';
-import { ContactInformation } from './contact-information/contact-information';
-import { EmailContactMethod } from './contact-information/email-contact-method';
-import { PhoneContactMethod } from './contact-information/phone-contact-method';
+import { ContactInformation } from '../contact-information/contact-information';
+import { EmailContactMethod } from '../contact-information/email-contact-method';
+import { PhoneContactMethod } from '../contact-information/phone-contact-method';
 import { Injectable } from 'noose-injection';
-import { ListingClientAnnotation } from '../core-annotations';
-import { ListingApproval } from './models/listing-approval';
+import { ListingClientAnnotation } from '../../core-annotations';
+import { ListingApproval } from '../models/listing-approval';
 
 @Injectable()
 export class ListingBroker {
