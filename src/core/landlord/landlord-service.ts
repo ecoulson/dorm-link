@@ -1,4 +1,6 @@
 import { Injectable } from 'noose-injection';
+import { Environment } from '../environment/environment';
+import { EnvironmentAnnotation } from '../environment/environment-annotations';
 import { EventEmitterAnnotation } from '../events/event-annotations';
 import { EventEmitter } from '../events/event-emitter';
 import { EmailNotification } from '../notifications/email-notification';
@@ -16,7 +18,9 @@ export class LandlordService {
         @EventEmitterAnnotation.inject()
         private readonly eventEmitter: EventEmitter,
         @LandlordBrokerAnnotation.inject()
-        private readonly broker: LandlordBroker
+        private readonly broker: LandlordBroker,
+        @EnvironmentAnnotation.inject()
+        private readonly environment: Environment
     ) {}
 
     async invite(
@@ -34,7 +38,11 @@ export class LandlordService {
             new NotificationEvent(
                 new EmailNotification(
                     landlord.email,
-                    `Follow the following link to approve a subleting for http://${process.env.API_BASE_URL}/landlord/approval?listingId=${listingId}&email=${landlord.email}`
+                    `Follow the following link to approve a subletting for ${this.environment.get(
+                        'API_BASE_URL'
+                    )}/landlord/approval?listingId=${listingId}&email=${
+                        landlord.email
+                    }`
                 )
             )
         );
