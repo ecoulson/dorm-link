@@ -8,10 +8,10 @@ import { CreateContactInfoParameters } from './contact-information/create-contac
 import { CreateContactMethodParameters } from './contact-information/create-contact-method-parameters';
 import { EmailContactMethod } from './contact-information/email-contact-method';
 import { PhoneContactMethod } from './contact-information/phone-contact-method';
-import { CreateListingParameters } from './create-listing-parameters';
-import { Listing } from './listing';
+import { CreateListingParameters } from './requests/create-listing-parameters';
+import { Listing } from './models/listing';
 import { ListingBrokerAnnotation } from './listing-annotations';
-import { ListingApproval } from './listing-approval';
+import { ListingApproval } from './models/listing-approval';
 import { ListingBroker } from './listing-broker';
 
 @Injectable()

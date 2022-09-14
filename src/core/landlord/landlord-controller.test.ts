@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto';
 import { anyString, anything, instance, mock, verify, when } from 'ts-mockito';
-import { Landlord } from './landlord';
+import { Landlord } from './models/landlord';
 import { LandlordController } from './landlord-controller';
 import { LandlordService } from './landlord-service';
 

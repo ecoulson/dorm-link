@@ -1,4 +1,4 @@
-import { ContactInformation } from './contact-information/contact-information';
+import { ContactInformation } from '../contact-information/contact-information';
 import { ListingApproval } from './listing-approval';
 
 export class Listing {

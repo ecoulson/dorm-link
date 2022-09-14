@@ -1,6 +1,6 @@
 import { Injectable } from 'noose-injection';
-import { Landlord } from './landlord';
-import { LandlordAction } from './landlord-action';
+import { Landlord } from './models/landlord';
+import { LandlordAction } from './models/landlord-action';
 import { LandlordServiceAnnotation } from './landlord-annotations';
 import { LandlordService } from './landlord-service';
 import { LandlordApprovalActionRequest } from './requests/landlord-approval-action-request';

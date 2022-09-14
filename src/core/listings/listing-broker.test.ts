@@ -2,8 +2,8 @@ import { Prisma } from '@prisma/client';
 import { randomUUID } from 'crypto';
 import { anything, instance, mock, reset, verify, when } from 'ts-mockito';
 import { ContactInformation } from './contact-information/contact-information';
-import { Listing } from './listing';
-import { ListingApproval } from './listing-approval';
+import { Listing } from './models/listing';
+import { ListingApproval } from './models/listing-approval';
 import { ListingBroker } from './listing-broker';
 
 describe('Listing Broker Test Suite', () => {

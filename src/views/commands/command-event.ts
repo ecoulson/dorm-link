@@ -1,9 +1,7 @@
-import { Command, Event, EventType } from '../../core';
+import { Command, EventType, Event } from '../../core';
 
-export class CommandEvent implements Event<Command> {
-    public readonly type: EventType;
-
-    constructor(public readonly data: Command) {
-        this.type = EventType.Command;
+export class CommandEvent extends Event<Command> {
+    constructor(data: Command) {
+        super(EventType.Command, data);
     }
 }

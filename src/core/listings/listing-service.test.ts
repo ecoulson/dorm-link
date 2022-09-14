@@ -14,8 +14,8 @@ import { RedirectCommand } from '../navigation/redirect-command';
 import { ContactInformation } from './contact-information/contact-information';
 import { ContactMethodType } from './contact-information/contact-method-type';
 import { EmailContactMethod } from './contact-information/email-contact-method';
-import { Listing } from './listing';
-import { ListingApproval } from './listing-approval';
+import { Listing } from './models/listing';
+import { ListingApproval } from './models/listing-approval';
 import { ListingBroker } from './listing-broker';
 import { ListingService } from './listing-service';
 

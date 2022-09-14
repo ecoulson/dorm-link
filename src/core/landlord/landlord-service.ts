@@ -5,8 +5,8 @@ import { EventEmitterAnnotation } from '../events/event-annotations';
 import { EventEmitter } from '../events/event-emitter';
 import { EmailNotification } from '../notifications/email-notification';
 import { NotificationEvent } from '../notifications/notification-event';
-import { Landlord } from './landlord';
-import { LandlordAction } from './landlord-action';
+import { Landlord } from './models/landlord';
+import { LandlordAction } from './models/landlord-action';
 import { LandlordBrokerAnnotation } from './landlord-annotations';
 import { LandlordBroker } from './landlord-broker';
 import { LandlordApprovalActionRequest } from './requests/landlord-approval-action-request';
@@ -38,7 +38,7 @@ export class LandlordService {
             new NotificationEvent(
                 new EmailNotification(
                     landlord.email,
-                    `Follow the following link to approve a subletting for ${this.environment.get(
+                    `Follow the following link to approve a subletting ${this.environment.get(
                         'API_BASE_URL'
                     )}/landlord/approval?listingId=${listingId}&email=${
                         landlord.email

@@ -1,5 +1,5 @@
 import { Injectable } from 'noose-injection';
-import { Landlord } from './landlord';
+import { Landlord } from './models/landlord';
 
 @Injectable()
 export class LandlordBroker {

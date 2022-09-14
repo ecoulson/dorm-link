@@ -12,7 +12,7 @@ import { Environment } from '../environment/environment';
 import { EventEmitter } from '../events/event-emitter';
 import { EmailNotification } from '../notifications/email-notification';
 import { NotificationEvent } from '../notifications/notification-event';
-import { Landlord } from './landlord';
+import { Landlord } from './models/landlord';
 import { LandlordBroker } from './landlord-broker';
 import { LandlordService } from './landlord-service';
 
@@ -37,7 +37,7 @@ describe('Landlord Service Test Suite', () => {
         const expectedNotification = new NotificationEvent(
             new EmailNotification(
                 'ecoulson@hmc.edu',
-                `Follow the following link to approve a subletting for http://fake-domain.com/landlord/approval?listingId=${listingId}&email=ecoulson@hmc.edu`
+                `Follow the following link to approve a subletting http://fake-domain.com/landlord/approval?listingId=${listingId}&email=ecoulson@hmc.edu`
             )
         );
         const expectedLandlord = new Landlord(

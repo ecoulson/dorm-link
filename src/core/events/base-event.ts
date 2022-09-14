@@ -1,6 +1,7 @@
+import { Event } from './event';
 import { EventType } from './event-type';
 
-export class Event<T = unknown> {
+export class BaseEvent<T> implements Event<T> {
     public readonly type: EventType;
     public readonly data: T;
 

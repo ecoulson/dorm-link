@@ -10,8 +10,8 @@ import {
 } from 'ts-mockito';
 import { RedirectCommand } from '../navigation/redirect-command';
 import { ContactInformation } from './contact-information/contact-information';
-import { Listing } from './listing';
-import { ListingApproval } from './listing-approval';
+import { Listing } from './models/listing';
+import { ListingApproval } from './models/listing-approval';
 import { ListingController } from './listing-controller';
 import { ListingService } from './listing-service';
 
